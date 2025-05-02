@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | KSH Systems</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .coming-soon {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background-color: rgba(10, 32, 48, 0.8);
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .countdown-value {
+            font-family: var(--font-mono);
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--text-color-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .notify-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .input-group {
+            display: flex;
+            margin-top: 30px;
+        }
+        
+        .input-group input {
+            flex: 1;
+            padding: 15px;
+            background-color: rgba(10, 32, 48, 0.8);
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            border-radius: 4px 0 0 4px;
+            color: var(--text-color);
+            font-family: var(--font-sans);
+        }
+        
+        .input-group button {
+            padding: 15px 25px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-darker);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: var(--font-mono);
+        }
+        
+        @media (max-width: 768px) {
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .countdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="coming-soon">
+        <div class="container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                        <span class="terminal-title">launch_sequence.sh</span>
+                    </div>
+                </div>
+                <div class="terminal-content">
+                    <div class="command-line">$ <span class="command">initialize_launch_sequence</span></div>
+                    <h1 class="glitch" data-text="COMING SOON">COMING SOON</h1>
+                    <p class="typewriter">Systems initializing. Preparing for deployment.</p>
+                    
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="days">00</div>
+                            <div class="countdown-label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="hours">00</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="minutes">00</div>
+                            <div class="countdown-label">Minutes</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="seconds">00</div>
+                            <div class="countdown-label">Seconds</div>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-form">
+                        <p>Be the first to know when we launch. Enter your email for notification.</p>
+                        <div class="input-group">
+                            <input type="email" placeholder="your@email.com" required>
+                            <button type="submit">NOTIFY ME</button>
+                        </div>
+                    </div>
+                    
+                    <div class="links" style="margin-top: 30px;">
+                        <a href="index.html" style="margin-right: 20px;">Back to Portal</a>
+                        <a href="https://twitter.com" target="_blank">Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Set the launch date (example: 30 days from now)
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 30);
+        
+        // Update countdown every second
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            
+            // If the countdown is finished
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }, 1000);
+        
+        // Form submission
+        const form = document.querySelector('.notify-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if (email) {
+                const button = this.querySelector('button');
+                const originalText = button.textContent;
+                button.textContent = 'TRANSMITTED';
+                button.style.background = 'var(--success-color)';
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    this.reset();
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(90deg, var(--primary-color), var(--secondary-color))';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

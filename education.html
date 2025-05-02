@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,43 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <style>
+        /* Terminal control dots with more pronounced animation */
+        .terminal-controls .control {
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .terminal-controls .control.red {
+            animation: controlBounce 2s ease-in-out infinite;
+        }
+
+        .terminal-controls .control.yellow {
+            animation: controlBounce 2s ease-in-out infinite 0.3s;
+        }
+
+        .terminal-controls .control.green {
+            animation: controlBounce 2s ease-in-out infinite 0.6s;
+        }
+
+        @keyframes controlBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        /* More dramatic hover effect */
+        .terminal-controls .control:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 8px currentColor;
+        }
+
         /* Education Page Specific Styles */
         .education-timeline {
             position: relative;
@@ -21,9 +59,9 @@
             top: 10px;
             bottom: 10px;
             width: 2px;
-            background: linear-gradient(to bottom, 
-                var(--primary-color), 
-                var(--secondary-color));
+            background: linear-gradient(to bottom,
+                    var(--primary-color),
+                    var(--secondary-color));
             box-shadow: 0 0 10px var(--primary-color);
         }
 
@@ -247,10 +285,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(0deg, 
-                rgba(7, 21, 33, 0.8) 0%, 
-                rgba(7, 21, 33, 0.3) 50%, 
-                rgba(0, 255, 213, 0.1) 100%);
+            background: linear-gradient(0deg,
+                    rgba(7, 21, 33, 0.8) 0%,
+                    rgba(7, 21, 33, 0.3) 50%,
+                    rgba(0, 255, 213, 0.1) 100%);
             pointer-events: none;
         }
 
@@ -338,6 +376,7 @@
                 opacity: 0;
                 transform: translateX(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -348,9 +387,11 @@
             0% {
                 box-shadow: 0 0 5px rgba(0, 255, 213, 0.5);
             }
+
             50% {
                 box-shadow: 0 0 20px rgba(0, 255, 213, 0.8);
             }
+
             100% {
                 box-shadow: 0 0 5px rgba(0, 255, 213, 0.5);
             }
@@ -395,11 +436,11 @@
             nav ul {
                 display: none;
             }
-            
+
             .mobile-menu-btn {
                 display: flex;
             }
-            
+
             .mobile-menu-active nav ul li {
                 margin: 15px 0;
             }
@@ -458,38 +499,50 @@
     <section class="education">
         <div class="container">
             <h2 class="section-title">EDUCATIONAL TIMELINE</h2>
-            
+
             <div class="education-timeline">
                 <!-- Java Institute -->
                 <div class="timeline-item" id="university">
                     <div class="timeline-item-header">
                         <div>
                             <h3 class="timeline-item-title">
-                                <i class="material-icons education-icon">school</i>Java Institute for Advanced Technology
+                                <i class="material-icons education-icon">school</i>Java Institute for Advanced
+                                Technology
                             </h3>
                             <h4 class="timeline-item-subtitle">Higher Education</h4>
                         </div>
                         <div class="timeline-item-date">2021-08-03 - Present</div>
                     </div>
-                    
+
                     <div class="timeline-item-body">
-                        <p>The Java Institute for Advanced Technology is a premier research-based higher education institute in Sri Lanka, renowned for its international partnerships and professional certifications. It is ISO 9001:2015 certified and functions as an Approved Centre of UK Awards, founded by industry experts including the former CEO of Edexcel UK.</p>
-                        
-                        <p>All PCJT certifications are jointly issued by UK Awards and Skills and Education Group Awards, a respected UK awarding body recognized by Ofqual, CCEA, and Qualification Wales. These certifications align with RQF Levels 4 to 6 and are credit-rated under both the SCQF and EQF frameworks.</p>
-                        
+                        <p>The Java Institute for Advanced Technology is a premier research-based higher education
+                            institute in Sri Lanka, renowned for its international partnerships and professional
+                            certifications. It is ISO 9001:2015 certified and functions as an Approved Centre of UK
+                            Awards, founded by industry experts including the former CEO of Edexcel UK.</p>
+
+                        <p>All PCJT certifications are jointly issued by UK Awards and Skills and Education Group
+                            Awards, a respected UK awarding body recognized by Ofqual, CCEA, and Qualification Wales.
+                            These certifications align with RQF Levels 4 to 6 and are credit-rated under both the SCQF
+                            and EQF frameworks.</p>
+
                         <div class="degree-program animate-glow">
                             <h4 class="degree-title">🧑‍🎓 BSc (Hons) in Software Engineering – Top-Up</h4>
                             <div class="degree-details">Validated by Birmingham City University, United Kingdom</div>
-                            <div class="degree-details">Officially recognized by the University Grants Commission (UGC) Sri Lanka</div>
+                            <div class="degree-details">Officially recognized by the University Grants Commission (UGC)
+                                Sri Lanka</div>
                         </div>
-                        
+
                         <div class="accreditation-logos">
-                            <img src="https://banner2.cleanpng.com/20180505/rkq/avd9ij1nl.webp" alt="Birmingham City University" class="accreditation-logo">
-                            <img src="https://ukawards.org.uk/wp-content/uploads/2025/04/LOGO_high-resolution-.png" alt="UK Awards" class="accreditation-logo">
-                            <img src="https://images.seeklogo.com/logo-png/40/1/iso-9001-sgs-logo-png_seeklogo-408423.png" alt="ISO 9001:2015" class="accreditation-logo">
-                            <img src="https://www.mohe.gov.lk/images/pictures/ugc.jpg" alt="UGC Sri Lanka" class="accreditation-logo">
+                            <img src="https://banner2.cleanpng.com/20180505/rkq/avd9ij1nl.webp"
+                                alt="Birmingham City University" class="accreditation-logo">
+                            <img src="https://ukawards.org.uk/wp-content/uploads/2025/04/LOGO_high-resolution-.png"
+                                alt="UK Awards" class="accreditation-logo">
+                            <img src="https://images.seeklogo.com/logo-png/40/1/iso-9001-sgs-logo-png_seeklogo-408423.png"
+                                alt="ISO 9001:2015" class="accreditation-logo">
+                            <img src="https://www.mohe.gov.lk/images/pictures/ugc.jpg" alt="UGC Sri Lanka"
+                                class="accreditation-logo">
                         </div>
-                        
+
                         <div class="education-stats">
                             <div class="edu-stat-item">
                                 <div class="edu-stat-value">4+</div>
@@ -506,63 +559,69 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Secondary School -->
-              <!-- Secondary School -->
-<div class="timeline-item" id="secondary">
-    <div class="timeline-item-header">
-        <div>
-            <h3 class="timeline-item-title">
-                <i class="material-icons education-icon">account_balance</i>Wp/Gm/Padmawathie Central College
-            </h3>
-            <h4 class="timeline-item-subtitle">Secondary Education</h4>
-        </div>
-        <div class="timeline-item-date">Complete: 2016-01-16</div>
-    </div>
-    
-    <div class="timeline-item-body">
-        <div class="school-image-container">
-            <img src="img/school.jpg" alt="Padmawathie Central College" class="school-image">
-            <div class="school-image-overlay"></div>
-            <div class="school-info">
-                <h3 class="school-name">Padmawathie Central College</h3>
-                <p class="school-location"><i class="material-icons">location_on</i> Dekatana, Sri Lanka</p>
-            </div>
-        </div>
-        
-        <p>A government Buddhist mixed school located in Dekatana, Sri Lanka. The school is administered by the Western Provincial Council and provides Sinhala-medium education. It emphasizes both academic excellence and moral development based on Buddhist values.</p>
-        
-        <div class="certification-badges">
-            <div class="certification-badge">
-                <svg class="certificate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25 6 2.25v4.7z"/>
-                </svg>
-                G.C.E. O/L
-            </div>
-            <div class="certification-badge">
-                <svg class="certificate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 3l.01 10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-1.99 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                </svg>
-                Orchestra Guitarist
-            </div>
-        </div>
-        
-        <div class="education-stats">
-            <div class="edu-stat-item">
-                <div class="edu-stat-value">7</div>
-                <div class="edu-stat-label">YEARS ATTENDED</div>
-            </div>
-            <div class="edu-stat-item">
-                <div class="edu-stat-value">9</div>
-                <div class="edu-stat-label">O/L SUBJECTS</div>
-            </div>
-            <div class="edu-stat-item">
-                <div class="edu-stat-value">5+</div>
-                <div class="edu-stat-label">ACHIEVEMENTS</div>
-            </div>
-        </div>
-    </div>
-</div>
+                <!-- Secondary School -->
+                <div class="timeline-item" id="secondary">
+                    <div class="timeline-item-header">
+                        <div>
+                            <h3 class="timeline-item-title">
+                                <i class="material-icons education-icon">account_balance</i>Wp/Gm/Padmawathie Central
+                                College
+                            </h3>
+                            <h4 class="timeline-item-subtitle">Secondary Education</h4>
+                        </div>
+                        <div class="timeline-item-date">Complete: 2016-01-16</div>
+                    </div>
+
+                    <div class="timeline-item-body">
+                        <div class="school-image-container">
+                            <img src="img/school.jpg" alt="Padmawathie Central College" class="school-image">
+                            <div class="school-image-overlay"></div>
+                            <div class="school-info">
+                                <h3 class="school-name">Padmawathie Central College</h3>
+                                <p class="school-location"><i class="material-icons">location_on</i> Dekatana, Sri Lanka
+                                </p>
+                            </div>
+                        </div>
+
+                        <p>A government Buddhist mixed school located in Dekatana, Sri Lanka. The school is administered
+                            by the Western Provincial Council and provides Sinhala-medium education. It emphasizes both
+                            academic excellence and moral development based on Buddhist values.</p>
+
+                        <div class="certification-badges">
+                            <div class="certification-badge">
+                                <svg class="certificate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83v-4.7l6-2.25 6 2.25v4.7z" />
+                                </svg>
+                                G.C.E. O/L
+                            </div>
+                            <div class="certification-badge">
+                                <svg class="certificate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 3l.01 10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-1.99 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+                                </svg>
+                                Orchestra Guitarist
+                            </div>
+                        </div>
+
+                        <div class="education-stats">
+                            <div class="edu-stat-item">
+                                <div class="edu-stat-value">7</div>
+                                <div class="edu-stat-label">YEARS ATTENDED</div>
+                            </div>
+                            <div class="edu-stat-item">
+                                <div class="edu-stat-value">9</div>
+                                <div class="edu-stat-label">O/L SUBJECTS</div>
+                            </div>
+                            <div class="edu-stat-item">
+                                <div class="edu-stat-value">5+</div>
+                                <div class="edu-stat-label">ACHIEVEMENTS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -591,14 +650,14 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            
+
             if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
+                mobileMenuBtn.addEventListener('click', function () {
                     document.body.classList.toggle('mobile-menu-active');
-                    
+
                     // Animation for the menu button
                     const spans = this.querySelectorAll('span');
                     if (document.body.classList.contains('mobile-menu-active')) {
@@ -612,14 +671,14 @@
                     }
                 });
             }
-            
+
             // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (document.body.classList.contains('mobile-menu-active') && 
-                    !event.target.closest('nav') && 
+            document.addEventListener('click', function (event) {
+                if (document.body.classList.contains('mobile-menu-active') &&
+                    !event.target.closest('nav') &&
                     !event.target.closest('.mobile-menu-btn')) {
                     document.body.classList.remove('mobile-menu-active');
-                    
+
                     // Reset button animation
                     const spans = document.querySelectorAll('.mobile-menu-btn span');
                     spans.forEach(span => {
@@ -628,14 +687,14 @@
                     });
                 }
             });
-            
+
             // Close menu when clicking on a menu item
             const navLinks = document.querySelectorAll('nav ul li a');
             navLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     if (document.body.classList.contains('mobile-menu-active')) {
                         document.body.classList.remove('mobile-menu-active');
-                        
+
                         // Reset button animation
                         const spans = document.querySelectorAll('.mobile-menu-btn span');
                         spans.forEach(span => {
@@ -658,7 +717,7 @@
             // Function to handle scroll animations
             function animateOnScroll() {
                 const timelineItems = document.querySelectorAll('.timeline-item');
-                
+
                 timelineItems.forEach((item, index) => {
                     if (isInViewport(item)) {
                         // Add staggered delay based on index
@@ -671,10 +730,11 @@
 
             // Initial check on load
             animateOnScroll();
-            
+
             // Add scroll event listener
             window.addEventListener('scroll', animateOnScroll);
         });
+
     </script>
 </body>
 

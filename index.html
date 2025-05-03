@@ -25,7 +25,7 @@
             width: 200%;
             height: 200%;
             transform-origin: center;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(0, 255, 213, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 213, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -34,8 +34,13 @@
         }
 
         @keyframes rotateGrid {
-            0% { transform: translateY(-50%) translateX(-50%) rotate(0deg) scale(0.8); }
-            100% { transform: translateY(-50%) translateX(-50%) rotate(360deg) scale(1.2); }
+            0% {
+                transform: translateY(-50%) translateX(-50%) rotate(0deg) scale(0.8);
+            }
+
+            100% {
+                transform: translateY(-50%) translateX(-50%) rotate(360deg) scale(1.2);
+            }
         }
 
         .noise-overlay {
@@ -57,10 +62,10 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 255, 213, 0.8) 50%, 
-                transparent 100%);
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 255, 213, 0.8) 50%,
+                    transparent 100%);
             box-shadow: 0 0 20px rgba(0, 255, 213, 0.8);
             z-index: 10;
             pointer-events: none;
@@ -68,10 +73,23 @@
         }
 
         @keyframes scanDown {
-            0% { transform: translateY(-10px); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
+            0% {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
         }
 
         /* HUD Corners */
@@ -132,14 +150,22 @@
         }
 
         @keyframes containerFloat {
-            0%, 100% { transform: translate(-50%, -50%); }
-            50% { transform: translate(-50%, calc(-50% - 15px)); }
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%);
+            }
+
+            50% {
+                transform: translate(-50%, calc(-50% - 15px));
+            }
         }
 
         @keyframes containerGlow {
             0% {
                 box-shadow: 0 0 30px rgba(0, 255, 213, 0.2), 0 0 60px rgba(0, 255, 213, 0.1);
             }
+
             100% {
                 box-shadow: 0 0 50px rgba(0, 255, 213, 0.4), 0 0 100px rgba(0, 255, 213, 0.2);
             }
@@ -165,18 +191,23 @@
             width: 100%;
             height: 1px;
             background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(0, 255, 213, 0.3) 20%,
-                rgba(0, 255, 213, 0.8) 50%,
-                rgba(0, 255, 213, 0.3) 80%,
-                transparent 100%);
+                    transparent 0%,
+                    rgba(0, 255, 213, 0.3) 20%,
+                    rgba(0, 255, 213, 0.8) 50%,
+                    rgba(0, 255, 213, 0.3) 80%,
+                    transparent 100%);
             animation: headerScan 3s infinite linear;
             transform: translateX(-100%);
         }
 
         @keyframes headerScan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .terminal-controls {
@@ -208,8 +239,17 @@
         }
 
         @keyframes controlPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 currentColor; }
-            50% { transform: scale(1.2); box-shadow: 0 0 10px currentColor; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 currentColor;
+            }
+
+            50% {
+                transform: scale(1.2);
+                box-shadow: 0 0 10px currentColor;
+            }
         }
 
         .terminal-title {
@@ -223,11 +263,30 @@
         }
 
         @keyframes glitchText {
-            0%, 100% { text-shadow: none; }
-            5%, 7% { text-shadow: 0 0 10px #00ffd5, -2px 0 #00ffd5, 2px 0 #ff1177; }
-            6%, 8% { text-shadow: 0 0 10px #00ffd5, 2px 0 #00ffd5, -2px 0 #ff1177; }
-            9% { text-shadow: none; }
-            10%, 12% { text-shadow: 0 0 10px #00ffd5, -2px 0 #00ffd5, 2px 0 #ff1177; }
+
+            0%,
+            100% {
+                text-shadow: none;
+            }
+
+            5%,
+            7% {
+                text-shadow: 0 0 10px #00ffd5, -2px 0 #00ffd5, 2px 0 #ff1177;
+            }
+
+            6%,
+            8% {
+                text-shadow: 0 0 10px #00ffd5, 2px 0 #00ffd5, -2px 0 #ff1177;
+            }
+
+            9% {
+                text-shadow: none;
+            }
+
+            10%,
+            12% {
+                text-shadow: 0 0 10px #00ffd5, -2px 0 #00ffd5, 2px 0 #ff1177;
+            }
         }
 
         /* Content Styling */
@@ -261,16 +320,37 @@
         }
 
         @keyframes titleGlow {
-            0% { text-shadow: 0 0 10px rgba(0, 255, 213, 0.5), 0 0 20px rgba(0, 255, 213, 0.3); }
-            100% { text-shadow: 0 0 15px rgba(0, 255, 213, 0.8), 0 0 30px rgba(0, 255, 213, 0.5); }
+            0% {
+                text-shadow: 0 0 10px rgba(0, 255, 213, 0.5), 0 0 20px rgba(0, 255, 213, 0.3);
+            }
+
+            100% {
+                text-shadow: 0 0 15px rgba(0, 255, 213, 0.8), 0 0 30px rgba(0, 255, 213, 0.5);
+            }
         }
 
         @keyframes titleGlitch {
-            0%, 100% { transform: translateX(0); }
-            5% { transform: translateX(-2px); }
-            10% { transform: translateX(2px); }
-            15% { transform: translateX(-2px); }
-            20% { transform: translateX(0); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            5% {
+                transform: translateX(-2px);
+            }
+
+            10% {
+                transform: translateX(2px);
+            }
+
+            15% {
+                transform: translateX(-2px);
+            }
+
+            20% {
+                transform: translateX(0);
+            }
         }
 
         .construction-desc {
@@ -285,8 +365,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Progress Section */
@@ -305,7 +392,8 @@
             position: relative;
         }
 
-        .progress-label::before, .progress-label::after {
+        .progress-label::before,
+        .progress-label::after {
             content: '';
             position: absolute;
             top: 50%;
@@ -343,8 +431,13 @@
         }
 
         @keyframes progressGrow {
-            from { width: 0; }
-            to { width: 62%; }
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 62%;
+            }
         }
 
         .progress-fill::before {
@@ -354,16 +447,18 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.4), 
-                transparent);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent);
             animation: progressScan 2s infinite linear;
             transform: translateX(-100%);
         }
 
         @keyframes progressScan {
-            to { transform: translateX(300%); }
+            to {
+                transform: translateX(300%);
+            }
         }
 
         .progress-percentage {
@@ -427,8 +522,13 @@
         }
 
         @keyframes scanHorizontal {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .countdown-label {
@@ -477,10 +577,10 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 255, 213, 0.2), 
-                transparent);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(0, 255, 213, 0.2),
+                    transparent);
             transition: transform 0.5s ease;
         }
 
@@ -505,8 +605,13 @@
         }
 
         @keyframes cubeSpin {
-            0% { transform: rotateX(0deg) rotateY(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
         }
 
         .cube-face {
@@ -526,12 +631,29 @@
             font-size: 36px;
         }
 
-        .front { transform: translateZ(50px); }
-        .back { transform: rotateY(180deg) translateZ(50px); }
-        .top { transform: rotateX(90deg) translateZ(50px); }
-        .bottom { transform: rotateX(-90deg) translateZ(50px); }
-        .left { transform: rotateY(-90deg) translateZ(50px); }
-        .right { transform: rotateY(90deg) translateZ(50px); }
+        .front {
+            transform: translateZ(50px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(50px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(50px);
+        }
 
         /* Binary Rain Effect */
         #binary-rain {
@@ -617,7 +739,7 @@
     </style>
 </head>
 
-<body>
+<body class="system-upgrade">
     <!-- Background Elements -->
     <div class="bg-grid"></div>
     <canvas id="neural-network"></canvas>
@@ -644,7 +766,8 @@
 
         <div class="construction-content">
             <h1 class="construction-title" data-text="SYSTEM UPGRADE">SYSTEM UPGRADE</h1>
-            <p class="construction-desc">KSHPRIME INDUSTRIES is currently upgrading its neural systems and digital infrastructure. Enhanced interface protocols are being implemented to optimize user experience.</p>
+            <p class="construction-desc">KSHPRIME INDUSTRIES is currently upgrading its neural systems and digital
+                infrastructure. Enhanced interface protocols are being implemented to optimize user experience.</p>
 
             <div class="cube-container">
                 <div class="cube">
@@ -701,7 +824,7 @@
 
     <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Set end date - 7 days from now
             const endDate = new Date();
             endDate.setDate(endDate.getDate() + 7);
@@ -901,13 +1024,13 @@
                 scanLine.style.boxShadow = '0 0 10px rgba(0, 255, 213, 0.5)';
                 scanLine.style.zIndex = '8';
                 scanLine.style.pointerEvents = 'none';
-                
+
                 document.body.appendChild(scanLine);
-                
+
                 setTimeout(() => {
                     scanLine.remove();
                 }, 500);
-                
+
                 scanLineY += 3;
                 if (scanLineY > window.innerHeight) {
                     scanLineY = 0;
@@ -933,7 +1056,7 @@
 
             // Start animations
             animate();
-            
+
             // Set intervals for various effects
             setInterval(updateDataProcessing, 3000);
             setInterval(createScanLine, 100);
@@ -944,7 +1067,7 @@
                 if (Math.random() > 0.9) {
                     title.style.textShadow = '2px 0 #ff1177, -2px 0 #00ffd5';
                     title.style.transform = 'translateX(2px)';
-                    
+
                     setTimeout(() => {
                         title.style.textShadow = '';
                         title.style.transform = '';
@@ -952,6 +1075,103 @@
                 }
             }, 2000);
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const portalContainer = document.querySelector('.system-upgrade');
+            if (!portalContainer) return;
+
+            const canvas = document.createElement('canvas');
+            Object.assign(canvas.style, {
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                zIndex: '0',
+                opacity: '0.4',
+                borderRadius: '12px'
+            });
+            canvas.className = 'network-canvas';
+            portalContainer.style.position = 'relative';
+            portalContainer.insertBefore(canvas, portalContainer.firstChild);
+
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = portalContainer.offsetWidth;
+                canvas.height = portalContainer.offsetHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const color = '#1e90ff';
+
+            class Node {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 1.2;
+                    this.vy = (Math.random() - 0.5) * 1.2;
+                    this.radius = Math.random() * 1.2 + 0.8;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                }
+            }
+
+            const nodes = [];
+            const density = 10000; // Lower = more nodes
+            const nodeCount = Math.floor(canvas.width * canvas.height / density); // ~double previous nodes
+
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                nodes.forEach(node => {
+                    node.update();
+                    node.draw();
+                });
+
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const distanceSq = dx * dx + dy * dy;
+                        const maxDistSq = 90 * 90;
+
+                        if (distanceSq < maxDistSq) {
+                            const opacity = 1 - distanceSq / maxDistSq;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            animate();
+        });
+
+
     </script>
 </body>
 

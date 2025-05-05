@@ -846,6 +846,18 @@
                 transform: rotate(360deg);
             }
         }
+
+        @media (max-width: 768px) {
+            .data-processing {
+                display: none;
+            }
+            .hud-corner{
+                display: none;
+            }
+            .loading-indicator{
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -919,7 +931,7 @@
     <div class="loading-indicator">
         <div class="loading-circle"></div>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const portalContainer = document.querySelector('.portal');

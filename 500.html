@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Internal Server Error | KSHPRIME INDUSTRIES</title>
+    <link rel="icon" href="icons/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .server-error {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .error-code {
+            font-family: var(--font-mono);
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--warning-color);
+            line-height: 1;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
+        }
+        
+        .error-code::before {
+            content: "500";
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--danger-color);
+            opacity: 0.5;
+            z-index: -1;
+            transform: translate(-5px, -5px);
+            text-shadow: 0 0 10px rgba(255, 34, 0, 0.5);
+        }
+        
+        .error-code::after {
+            content: "500";
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--primary-color);
+            opacity: 0.5;
+            z-index: -1;
+            transform: translate(5px, 5px);
+            text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+        }
+        
+        .matrix-code {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .error-details {
+            background-color: rgba(255, 157, 0, 0.1);
+            border: 1px solid rgba(255, 157, 0, 0.3);
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow-x: auto;
+        }
+        
+        .error-message {
+            color: var(--warning-color);
+            margin-bottom: 5px;
+        }
+        
+        .stack-trace {
+            color: var(--text-color-muted);
+            font-size: 0.8rem;
+        }
+        
+        .system-status {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .status-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .indicator-light {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+        
+        .indicator-light.red {
+            background-color: var(--danger-color);
+            box-shadow: 0 0 10px rgba(255, 34, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .indicator-light.yellow {
+            background-color: var(--warning-color);
+            box-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
+            animation: pulse 3s infinite;
+        }
+        
+        .indicator-light.green {
+            background-color: rgba(0, 255, 157, 0.3);
+            box-shadow: 0 0 5px rgba(0, 255, 157, 0.2);
+        }
+        
+        .indicator-label {
+            font-size: 0.8rem;
+            color: var(--text-color-muted);
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .action-btn {
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-darker);
+            border: none;
+        }
+        
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <canvas id="matrix" class="matrix-code"></canvas>
+    <div class="server-error">
+        <div class="container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                        <span class="terminal-title">critical_failure.sh</span>
+                    </div>
+                </div>
+                <div class="terminal-content">
+                    <div class="command-line">$ <span class="command">system_diagnostics --verbose</span></div>
+                    <div class="response">// Critical failure detected in server subsystems.</div>
+                    
+                    <div class="error-code">500</div>
+                    <h1 class="glitch" data-text="SYSTEM FAILURE">SYSTEM FAILURE</h1>
+                    <p>A critical error occurred while processing your request.</p>
+                    <p>Defensive protocols activated. System administrators have been notified.</p>
+                    
+                    <div class="error-details">
+                        <div class="error-message">[ERROR] Uncaught Exception: Server communication interrupted</div>
+                        <div class="stack-trace">
+                            at ServerController.processRequest (server.js:512)<br>
+                            at RequestHandler.execute (core.js:231)<br>
+                            at ApplicationCore.run (app.js:119)
+                        </div>
+                    </div>
+                    
+                    <div class="system-status">
+                        <div class="status-indicator">
+                            <div class="indicator-light red"></div>
+                            <div class="indicator-label">SERVER</div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="indicator-light yellow"></div>
+                            <div class="indicator-label">DATABASE</div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="indicator-light green"></div>
+                            <div class="indicator-label">FRONTEND</div>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="indicator-light yellow"></div>
+                            <div class="indicator-label">CACHE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button type="button" class="action-btn primary-btn" id="reload-btn">RELOAD SYSTEM</button>
+                        <a href="index.html" class="action-btn secondary-btn">RETURN TO PORTAL</a>
+                    </div>
+                    
+                    <div class="status-line">STATUS: <span class="status-inactive">DEGRADED</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const characters = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+        const columns = Math.floor(canvas.width / 20);
+        const drops = [];
+        
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height);
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ffd5';
+            ctx.font = '15px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * 20, drops[i] * 20);
+                
+                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
+        
+        // Reload button
+        const reloadBtn = document.getElementById('reload-btn');
+        reloadBtn.addEventListener('click', function() {
+            const terminalContent = document.querySelector('.terminal-content');
+            terminalContent.classList.add('shake');
+            
+            setTimeout(() => {
+                terminalContent.classList.remove('shake');
+                this.textContent = 'RELOADING...';
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            }, 500);
+        });
+        
+        // Simulated terminal typing effect
+        const responseLines = document.querySelectorAll('.response');
+        
+        responseLines.forEach((line, i) => {
+            const text = line.textContent;
+            line.textContent = '';
+            
+            setTimeout(() => {
+                let charIndex = 0;
+                const typeInterval = setInterval(() => {
+                    if (charIndex < text.length) {
+                        line.textContent += text.charAt(charIndex);
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 20);
+            }, i * 500);
+        });
+        
+        // Random glitch effects
+        setInterval(() => {
+            const glitchElement = document.querySelector('.glitch');
+            glitchElement.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+            
+            setTimeout(() => {
+                glitchElement.style.transform = 'translate(0, 0)';
+            }, 100);
+        }, 3000);
+        
+        // Resize canvas when window is resized
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

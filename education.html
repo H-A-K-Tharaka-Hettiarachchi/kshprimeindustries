@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kshithija Tharaka | Education</title>
+    <link rel="icon" href="icons/icon.png" type="image/png" sizes="32x32">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <style>
@@ -735,6 +737,104 @@
         });
 
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const portalContainer = document.querySelector('.personal');
+        if (!portalContainer) return;
+
+        const canvas = document.createElement('canvas');
+        Object.assign(canvas.style, {
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            zIndex: '0',
+            opacity: '0.4',
+            borderRadius: '12px'
+        });
+        canvas.className = 'network-canvas';
+        portalContainer.style.position = 'relative';
+        portalContainer.insertBefore(canvas, portalContainer.firstChild);
+
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = portalContainer.offsetWidth;
+            canvas.height = portalContainer.offsetHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const color = '#1e90ff';
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 1.2;
+                this.vy = (Math.random() - 0.5) * 1.2;
+                this.radius = Math.random() * 1.2 + 0.8;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+            }
+        }
+
+        const nodes = [];
+        const density = 10000; // Lower = more nodes
+        const nodeCount = Math.floor(canvas.width * canvas.height / density); // ~double previous nodes
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push(new Node());
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distanceSq = dx * dx + dy * dy;
+                    const maxDistSq = 90 * 90;
+
+                    if (distanceSq < maxDistSq) {
+                        const opacity = 1 - distanceSq / maxDistSq;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        animate();
+    });
+</script>
+
 </body>
 
 </html>

@@ -1,17 +1,25 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon | KSH Systems</title>
+    <title>Coming Soon | KSHPRIME INDUSTRIES</title>
+    <link rel="icon" href="icons/icon.png" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="css/main.css">
     <style>
+        /* Base styles */
         .coming-soon {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            z-index: 5;
+            position: relative;
         }
         
         .countdown {
@@ -26,6 +34,8 @@
             border: 1px solid rgba(0, 255, 213, 0.3);
             border-radius: 8px;
             padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
         
         .countdown-value {
@@ -33,6 +43,9 @@
             font-size: 3rem;
             color: var(--primary-color);
             margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px var(--primary-color);
         }
         
         .countdown-label {
@@ -40,6 +53,8 @@
             color: var(--text-color-muted);
             text-transform: uppercase;
             letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
         }
         
         .notify-form {
@@ -50,6 +65,7 @@
         .input-group {
             display: flex;
             margin-top: 30px;
+            position: relative;
         }
         
         .input-group input {
@@ -60,6 +76,8 @@
             border-radius: 4px 0 0 4px;
             color: var(--text-color);
             font-family: var(--font-sans);
+            position: relative;
+            z-index: 2;
         }
         
         .input-group button {
@@ -71,8 +89,528 @@
             font-weight: bold;
             cursor: pointer;
             font-family: var(--font-mono);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
         }
         
+        /* Enhanced animations */
+        
+        /* Animated terminal controls */
+        .terminal-controls .control {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .terminal-controls .control::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        
+        .terminal-controls .control.red {
+            animation: pulseDot 3s infinite;
+        }
+        
+        .terminal-controls .control.yellow {
+            animation: pulseDot 3s infinite 1s;
+        }
+        
+        .terminal-controls .control.green {
+            animation: pulseDot 3s infinite 2s;
+        }
+        
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            50% { transform: scale(1.2); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); }
+        }
+        
+        .terminal-controls .control:hover::before {
+            opacity: 0.7;
+        }
+        
+        /* Enhanced terminal window */
+        .terminal-window {
+            position: relative;
+            overflow: hidden;
+            animation: floatTerminal 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatTerminal {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Enhanced terminal header */
+        .terminal-header {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--primary-color) 50%, 
+                transparent 100%);
+            animation: scanLine 2s infinite linear;
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Enhanced terminal title */
+        .terminal-title {
+            position: relative;
+            animation: glitchText 5s infinite;
+        }
+        
+        @keyframes glitchText {
+            0%, 100% { transform: translateX(0); }
+            5%, 5.5% { transform: translateX(-2px); filter: blur(0); }
+            5.1%, 5.6% { transform: translateX(2px); filter: blur(1px); }
+            6%, 6.5% { transform: translateX(-1px); filter: blur(0); }
+            6.1%, 6.6% { transform: translateX(1px); filter: blur(1px); }
+            7% { transform: translateX(0); filter: blur(0); }
+            50% { transform: skewX(0); }
+            50.5% { transform: skewX(2deg); }
+            51% { transform: skewX(-2deg); }
+            51.5% { transform: skewX(0); }
+        }
+        
+        /* Enhanced countdown items */
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                                       rgba(0, 255, 213, 0.3) 0%, 
+                                       transparent 70%);
+            z-index: 1;
+            opacity: 0;
+            animation: pulseCountdown 4s infinite;
+        }
+        
+        @keyframes pulseCountdown {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        
+        .countdown-item:nth-child(1)::before { animation-delay: 0s; }
+        .countdown-item:nth-child(2)::before { animation-delay: 1s; }
+        .countdown-item:nth-child(3)::before { animation-delay: 2s; }
+        .countdown-item:nth-child(4)::before { animation-delay: 3s; }
+        
+        /* Cyber scan effects */
+        .cyber-scan {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .horizontal-scan {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                                      transparent 0%, 
+                                      var(--primary-color) 50%, 
+                                      transparent 100%);
+            box-shadow: 0 0 15px var(--primary-color);
+            opacity: 0.6;
+            animation: horizontalScan 8s linear infinite;
+        }
+        
+        @keyframes horizontalScan {
+            0% { top: -5px; opacity: 0; }
+            5% { opacity: 0.6; }
+            95% { opacity: 0.6; }
+            100% { top: 100vh; opacity: 0; }
+        }
+        
+        .vertical-scan {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                                      transparent 0%, 
+                                      var(--primary-color) 50%, 
+                                      transparent 100%);
+            box-shadow: 0 0 15px var(--primary-color);
+            opacity: 0.6;
+            animation: verticalScan 12s linear infinite;
+        }
+        
+        @keyframes verticalScan {
+            0% { left: -5px; opacity: 0; }
+            5% { opacity: 0.6; }
+            95% { opacity: 0.6; }
+            100% { left: 100vw; opacity: 0; }
+        }
+        
+        /* Enhanced terminal interface elements */
+        .terminal-interface {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .interface-element {
+            position: absolute;
+            border: 1px solid var(--primary-color);
+            opacity: 0.5;
+            animation: interfaceGlow 4s infinite alternate;
+        }
+        
+        @keyframes interfaceGlow {
+            0% { box-shadow: 0 0 5px var(--primary-color); }
+            100% { box-shadow: 0 0 15px var(--primary-color); }
+        }
+        
+        /* Enhanced command line animations */
+        .command {
+            position: relative;
+            animation: typingCursor 1s infinite;
+        }
+        
+        @keyframes typingCursor {
+            0%, 100% { border-right: 2px solid transparent; }
+            50% { border-right: 2px solid var(--primary-color); }
+        }
+        
+        /* Enhanced glitch text */
+        .glitch {
+            position: relative;
+            animation: glitchMain 5s infinite;
+        }
+        
+        .glitch::before, 
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00de;
+            animation: glitchBefore 2s infinite linear alternate;
+            color: var(--primary-color);
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: 1px 0 #00ffff;
+            animation: glitchAfter 3s infinite linear alternate;
+            color: var(--secondary-color);
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+        }
+        
+        @keyframes glitchMain {
+            0%, 100% { transform: translateX(0) skewX(0); }
+            5% { transform: translateX(-5px) skewX(5deg); }
+            10% { transform: translateX(5px) skewX(-5deg); }
+            15% { transform: translateX(0) skewX(0); }
+            50% { transform: translateX(0) skewY(0); }
+            55% { transform: translateY(-2px) skewY(2deg); }
+            60% { transform: translateY(2px) skewY(-2deg); }
+            65% { transform: translateY(0) skewY(0); }
+        }
+        
+        @keyframes glitchBefore {
+            0% { transform: translateX(0); }
+            80% { transform: translateX(0); }
+            85% { transform: translateX(2px); }
+            90% { transform: translateX(-2px); }
+            95% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+        
+        @keyframes glitchAfter {
+            0% { transform: translateX(0); }
+            80% { transform: translateX(0); }
+            85% { transform: translateX(-2px); }
+            90% { transform: translateX(2px); }
+            95% { transform: translateX(-2px); }
+            100% { transform: translateX(0); }
+        }
+        
+        /* Enhanced typewriter animation */
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            letter-spacing: 0.15em;
+            border-right: 0.15em solid var(--primary-color);
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color) }
+        }
+        
+        /* Enhanced button effects */
+        .input-group button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            z-index: -1;
+            animation: buttonShimmer 3s infinite;
+        }
+        
+        @keyframes buttonShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Enhanced data processing display */
+        .data-processing {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary-color);
+            text-align: right;
+            z-index: 20;
+            max-width: 300px;
+        }
+        
+        .data-line {
+            margin: 5px 0;
+            opacity: 0.8;
+            text-shadow: 0 0 5px var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .data-line::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            animation: dataLineEffect 2s infinite;
+            transform-origin: left;
+        }
+        
+        @keyframes dataLineEffect {
+            0% { transform: scaleX(0); opacity: 0; }
+            50% { transform: scaleX(1); opacity: 1; }
+            100% { transform: scaleX(0); opacity: 0; transform-origin: right; }
+        }
+        
+        /* Loading indicator enhancement */
+        .loading-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 20;
+        }
+        
+        .loading-circle {
+            width: 40px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
+        }
+        
+        .loading-circle::before,
+        .loading-circle::after {
+            content: '';
+            position: absolute;
+            border: 2px solid transparent;
+            border-radius: 50%;
+        }
+        
+        .loading-circle::before {
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border-top: 2px solid var(--secondary-color);
+            animation: spin 1.5s linear reverse infinite;
+        }
+        
+        .loading-circle::after {
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border-top: 2px solid var(--primary-color);
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* HUD corners enhancement */
+        .hud-corner {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            z-index: 10;
+            opacity: 0.8;
+            animation: hudPulse 4s infinite alternate;
+        }
+        
+        @keyframes hudPulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .hud-top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+        
+        .hud-top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+        
+        .hud-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+        
+        .hud-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+        
+        /* Digital circuit overlay */
+        .circuit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M20 20 L180 20 M20 20 L20 180 M180 180 L20 180 M180 180 L180 20 M100 20 L100 180 M20 100 L180 100" stroke="rgba(0, 255, 213, 0.1)" fill="none" stroke-width="1" /></svg>');
+            background-size: 100px 100px;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Digital rain animation enhancement */
+        .digital-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        /* Scanner effect */
+        .hud-scanner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 8;
+        }
+        
+        .hud-scanner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                         transparent 0%, 
+                         rgba(0, 255, 213, 0.1) 50%, 
+                         transparent 100%);
+            background-size: 100% 5px;
+            animation: scannerNoise 10s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes scannerNoise {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100vh; }
+        }
+        
+        /* Tech grid */
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background-image: linear-gradient(rgba(0, 255, 213, 0.05) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(0, 255, 213, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            animation: rotateGrid 180s linear infinite;
+        }
+        
+        @keyframes rotateGrid {
+            0% { transform-origin: center; transform: rotate(0deg) scale(1.5); }
+            100% { transform-origin: center; transform: rotate(360deg) scale(1); }
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .countdown {
                 grid-template-columns: repeat(2, 1fr);
@@ -86,8 +624,30 @@
         }
     </style>
 </head>
-<body>
+<body class="body">
+    <!-- Background elements -->
     <div class="noise-overlay"></div>
+    <div class="tech-grid"></div>
+    <div class="circuit-overlay"></div>
+    <div class="digital-rain-container" id="digitalRain"></div>
+    
+    <!-- Scan effects -->
+    <div class="cyber-scan">
+        <div class="horizontal-scan"></div>
+        <div class="vertical-scan"></div>
+    </div>
+    
+    <div class="hud-scanner"></div>
+    
+    <!-- Interface elements -->
+    <div class="terminal-interface" id="terminalElements"></div>
+    
+    <!-- HUD corners -->
+    <div class="hud-corner hud-top-left"></div>
+    <div class="hud-corner hud-top-right"></div>
+    <div class="hud-corner hud-bottom-left"></div>
+    <div class="hud-corner hud-bottom-right"></div>
+    
     <div class="coming-soon">
         <div class="container">
             <div class="terminal-window">
@@ -133,63 +693,416 @@
                     
                     <div class="links" style="margin-top: 30px;">
                         <a href="index.html" style="margin-right: 20px;">Back to Portal</a>
-                        <a href="https://twitter.com" target="_blank">Twitter</a>
+                        <a href="https://web.facebook.com/KSHPRIME28/" target="_blank">Facebook</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Data processing display -->
+    <div class="data-processing">
+        <div class="data-line">Initializing kshprime_sys.exe...</div>
+        <div class="data-line">Network status: online</div>
+        <div class="data-line">Securing connection...</div>
+        <div class="data-line">Encrypting data blocks...</div>
+        <div class="data-line">Running system diagnostics...</div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div class="loading-indicator">
+        <div class="loading-circle"></div>
+    </div>
+
     <script>
-        // Set the launch date (example: 30 days from now)
-        const launchDate = new Date();
-        launchDate.setDate(launchDate.getDate() + 30);
-        
-        // Update countdown every second
-        const countdown = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = launchDate - now;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the launch date (example: 30 days from now)
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
             
-            // Calculate days, hours, minutes, seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Display the result
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-            
-            // If the countdown is finished
-            if (distance < 0) {
-                clearInterval(countdown);
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-            }
-        }, 1000);
-        
-        // Form submission
-        const form = document.querySelector('.notify-form');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input').value;
-            if (email) {
-                const button = this.querySelector('button');
-                const originalText = button.textContent;
-                button.textContent = 'TRANSMITTED';
-                button.style.background = 'var(--success-color)';
+            // Update countdown every second
+            const countdown = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = launchDate - now;
                 
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    this.reset();
-                    button.textContent = originalText;
-                    button.style.background = 'linear-gradient(90deg, var(--primary-color), var(--secondary-color))';
-                }, 3000);
+                // Calculate days, hours, minutes, seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display the result
+                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+                
+                // If the countdown is finished
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    document.getElementById("days").innerText = "00";
+                    document.getElementById("hours").innerText = "00";
+                    document.getElementById("minutes").innerText = "00";
+                    document.getElementById("seconds").innerText = "00";
+                }
+            }, 1000);
+            
+            // Form submission
+            const form = document.querySelector('.notify-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                if (email) {
+                    const button = this.querySelector('button');
+                    const originalText = button.textContent;
+                    button.textContent = 'TRANSMITTED';
+                    button.style.background = 'var(--success-color)';
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        this.reset();
+                        button.textContent = originalText;
+                        button.style.background = 'linear-gradient(90deg, var(--primary-color), var(--secondary-color))';
+                    }, 3000);
+                }
+            });
+
+            // Create digital rain effect
+            const digitalRain = document.getElementById('digitalRain');
+            const binaryChars = '10';
+            const columns = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.style.position = 'absolute';
+                column.style.top = '-100px';
+                column.style.left = `${i * 20 + Math.random() * 10}px`;
+                column.style.color = 'rgba(0, 255, 213, 0.3)';
+                column.style.fontFamily = 'monospace';
+                column.style.fontSize = '14px';
+                column.style.pointerEvents = 'none';
+                column.style.userSelect = 'none';
+                column.style.textShadow = '0 0 5px rgba(0, 255, 213, 0.5)';
+                
+                // Set random heights for staggered effect
+                column.style.animation = `raindrop ${10 + Math.random() * 15}s linear infinite`;
+                column.style.animationDelay = `${Math.random() * 10}s`;
+                
+                // Create random binary strings
+                const length = Math.floor(20 + Math.random() * 30);
+                for (let j = 0; j < length; j++) {
+                    const char = document.createElement('div');
+                    char.textContent = binaryChars.charAt(Math.floor(Math.random() * binaryChars.length));
+                    char.style.marginTop = '5px';
+                    char.style.animation = `fadeInOut ${2 + Math.random() * 5}s infinite`;
+                    char.style.animationDelay = `${Math.random() * 5}s`;
+                    column.appendChild(char);
+                }
+                
+                digitalRain.appendChild(column);
             }
+
+            // Create a CSS animation for raindrops
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes raindrop {
+                    0% { transform: translateY(-100%); }
+                    100% { transform: translateY(${window.innerHeight + 100}px); }
+                }
+                              @keyframes fadeInOut {
+                    0%, 100% { opacity: 0.3; }
+                    50% { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Create terminal interface elements
+            const terminalElements = document.getElementById('terminalElements');
+            const elemCount = 8;
+            
+            for (let i = 0; i < elemCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('interface-element');
+                
+                // Position randomly but at edges
+                const side = Math.floor(Math.random() * 4);
+                const size = 30 + Math.random() * 80;
+                
+                switch(side) {
+                    case 0: // top
+                        element.style.top = '20px';
+                        element.style.left = `${Math.random() * 70 + 15}%`;
+                        element.style.width = `${size}px`;
+                        element.style.height = '2px';
+                        break;
+                    case 1: // right
+                        element.style.right = '20px';
+                        element.style.top = `${Math.random() * 70 + 15}%`;
+                        element.style.width = '2px';
+                        element.style.height = `${size}px`;
+                        break;
+                    case 2: // bottom
+                        element.style.bottom = '20px';
+                        element.style.left = `${Math.random() * 70 + 15}%`;
+                        element.style.width = `${size}px`;
+                        element.style.height = '2px';
+                        break;
+                    case 3: // left
+                        element.style.left = '20px';
+                        element.style.top = `${Math.random() * 70 + 15}%`;
+                        element.style.width = '2px';
+                        element.style.height = `${size}px`;
+                        break;
+                }
+                
+                // Set animation delay
+                element.style.animationDelay = `${Math.random() * 4}s`;
+                
+                terminalElements.appendChild(element);
+            }
+            
+            // Enhanced data processing display
+            const dataProcessingLines = document.querySelectorAll('.data-line');
+            const statusMessages = [
+                "Initializing kshprime_sys.exe...",
+                "Network status: online",
+                "Securing connection...",
+                "Encrypting data blocks...",
+                "Running system diagnostics...",
+                "Calibrating quantum sensors...",
+                "Validating user credentials...",
+                "Updating firewall protocols...",
+                "Scanning for vulnerabilities...",
+                "Optimizing neural networks...",
+                "Analyzing cybernetic patterns...",
+                "Decrypting access protocols...",
+                "Establishing secure channels...",
+                "Verifying core integrity..."
+            ];
+            
+            function updateDataProcessing() {
+                dataProcessingLines.forEach((line, index) => {
+                    if (Math.random() > 0.7) {
+                        // Add glitch effect before changing text
+                        line.style.textShadow = '2px 0 #ff007a, -2px 0 #00ffd5';
+                        
+                        setTimeout(() => {
+                            line.textContent = statusMessages[Math.floor(Math.random() * statusMessages.length)];
+                            line.style.textShadow = '';
+                        }, 100);
+                    }
+                });
+            }
+            
+            // Update data processing lines periodically
+            setInterval(updateDataProcessing, 3000);
+            
+            // Add responsive enhancements to control dots
+            const controlDots = document.querySelectorAll('.terminal-controls .control');
+            
+            controlDots.forEach(dot => {
+                dot.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.3)';
+                });
+                
+                dot.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+                
+                dot.addEventListener('click', function() {
+                    // Create ripple effect on click
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.top = '0';
+                    ripple.style.left = '0';
+                    ripple.style.width = '100%';
+                    ripple.style.height = '100%';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.backgroundColor = 'white';
+                    ripple.style.animation = 'rippleEffect 0.8s ease-out';
+                    
+                    // Add ripple style
+                    const rippleStyle = document.createElement('style');
+                    rippleStyle.textContent = `
+                        @keyframes rippleEffect {
+                            0% { transform: scale(0); opacity: 1; }
+                            100% { transform: scale(2); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(rippleStyle);
+                    
+                    this.appendChild(ripple);
+                    
+                    // Remove the ripple after animation
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 800);
+                });
+            });
+            
+            // Add glitch effect to terminal title
+            const terminalTitle = document.querySelector('.terminal-title');
+            
+            function glitchTerminalTitle() {
+                if (Math.random() > 0.9) {
+                    terminalTitle.style.clipPath = `inset(${Math.floor(Math.random() * 100)}% 0 ${Math.floor(Math.random() * 100)}% 0)`;
+                    terminalTitle.style.transform = `translateX(${(Math.random() - 0.5) * 10}px)`;
+                    
+                    // Reset after short delay
+                    setTimeout(() => {
+                        terminalTitle.style.clipPath = 'none';
+                        terminalTitle.style.transform = 'translateX(0)';
+                    }, 100);
+                }
+            }
+            
+            // Add random glitches to terminal title
+            setInterval(glitchTerminalTitle, 2000);
+            
+            // Create scan effect for horizontal and vertical scanners
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    // Create a new horizontal scan line
+                    const hscan = document.createElement('div');
+                    hscan.classList.add('horizontal-scan');
+                    document.querySelector('.cyber-scan').appendChild(hscan);
+                    
+                    setTimeout(() => {
+                        hscan.remove();
+                    }, 8000);
+                }
+                
+                if (Math.random() > 0.7) {
+                    // Create a new vertical scan line
+                    const vscan = document.createElement('div');
+                    vscan.classList.add('vertical-scan');
+                    document.querySelector('.cyber-scan').appendChild(vscan);
+                    
+                    setTimeout(() => {
+                        vscan.remove();
+                    }, 12000);
+                }
+            }, 5000);
+            
+            // Add neural network background
+            const portalContainer = document.querySelector('.body');
+            if (portalContainer) {
+                const canvas = document.createElement('canvas');
+                Object.assign(canvas.style, {
+                    position: 'fixed',
+                    top: '0',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
+                    zIndex: '0',
+                    opacity: '0.4'
+                });
+                canvas.className = 'network-canvas';
+                portalContainer.style.position = 'relative';
+                portalContainer.insertBefore(canvas, portalContainer.firstChild);
+
+                const ctx = canvas.getContext('2d');
+
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                const color = '#1e90ff';
+
+                class Node {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.vx = (Math.random() - 0.5) * 1.2;
+                        this.vy = (Math.random() - 0.5) * 1.2;
+                        this.radius = Math.random() * 1.2 + 0.8;
+                    }
+
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                    }
+
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                    }
+                }
+
+                const nodes = [];
+                const density = 10000; // Lower = more nodes
+                const nodeCount = Math.floor(canvas.width * canvas.height / density);
+
+                for (let i = 0; i < nodeCount; i++) {
+                    nodes.push(new Node());
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    nodes.forEach(node => {
+                        node.update();
+                        node.draw();
+                    });
+
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x;
+                            const dy = nodes[i].y - nodes[j].y;
+                            const distanceSq = dx * dx + dy * dy;
+                            const maxDistSq = 90 * 90;
+
+                            if (distanceSq < maxDistSq) {
+                                const opacity = 1 - distanceSq / maxDistSq;
+                                ctx.beginPath();
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
+                                ctx.lineWidth = 0.6;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                animate();
+            }
+            
+            // Glitch effect for COMING SOON text
+            const glitchTitle = document.querySelector('.glitch');
+            
+            function triggerGlitch() {
+                if (Math.random() > 0.7) {
+                    glitchTitle.style.animation = 'none';
+                    
+                    // Forced reflow
+                    void glitchTitle.offsetWidth;
+                    
+                    glitchTitle.style.animation = 'glitchMain 5s infinite';
+                    
+                    // Add extra glitchy effects
+                    glitchTitle.style.textShadow = `
+                        ${(Math.random() - 0.5) * 10}px 0 rgba(255, 0, 122, 0.8),
+                        ${(Math.random() - 0.5) * 10}px 0 rgba(0, 255, 213, 0.8)
+                    `;
+                    
+                    setTimeout(() => {
+                        glitchTitle.style.textShadow = '';
+                    }, 100);
+                }
+            }
+            
+            // Trigger glitch effect occasionally
+            setInterval(triggerGlitch, 3000);
         });
     </script>
 </body>

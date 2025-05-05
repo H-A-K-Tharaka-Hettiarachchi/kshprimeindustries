@@ -446,6 +446,192 @@
                 margin: 15px 0;
             }
         }
+
+          /* HUD Overlay Elements */
+          .hud-corner {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.7;
+        }
+
+        .hud-top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .hud-top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .hud-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .hud-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .hud-scanner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 255, 213, 0.5) 50%,
+                    transparent 100%);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 999;
+            animation: scanScreen 4s linear infinite;
+        }
+
+        @keyframes scanScreen {
+            0% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Data Processing Animation - Fixed */
+        .data-processing {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary-color);
+            pointer-events: none;
+            text-align: right;
+            opacity: 0.7;
+            z-index: 1000;
+            background-color: rgba(7, 21, 33, 0.7);
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 2px solid var(--primary-color);
+            max-width: 300px;
+        }
+
+        .data-line {
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            animation: typingEffect 3s steps(40, end) infinite;
+        }
+
+        /* Scanner Effect */
+        .scan-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            pointer-events: none;
+            animation: scanEffect 10s linear infinite;
+            opacity: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 255, 213, 0) 0%,
+                    rgba(0, 255, 213, 0.1) 50%,
+                    rgba(0, 255, 213, 0) 100%);
+        }
+
+        @keyframes scanEffect {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+
+            10%,
+            90% {
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Loading Indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .loading-circle {
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spinLoading 1s linear infinite;
+        }
+
+        .loading-circle::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2px solid transparent;
+            border-top-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: spinLoading 2s linear infinite reverse;
+        }
+
+        @keyframes spinLoading {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .data-processing {
+                display: none;
+            }
+
+            .hud-corner {
+                display: none;
+            }
+
+            .loading-indicator {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -627,6 +813,26 @@
         </div>
     </section>
 
+    <div class="digital-rain-container" id="digitalRain"></div>
+    <div class="hud-corner hud-top-left"></div>
+    <div class="hud-corner hud-top-right"></div>
+    <div class="hud-corner hud-bottom-left"></div>
+    <div class="hud-corner hud-bottom-right"></div>
+
+    </div>
+    <div class="circuit-overlay"></div>
+    <div class="tech-grid"></div>
+    <!-- <div class="scan-effect"></div> -->
+    <div class="loading-indicator">
+        <div class="loading-circle"></div>
+    </div>
+    <div class="data-processing">
+        <div class="data-line">Initializing kshprime_sys.exe...</div>
+        <div class="data-line">Scanning for intrusions...</div>
+        <div class="data-line">Security protocols active...</div>
+        <div class="data-line">Network status: online</div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -736,104 +942,159 @@
             window.addEventListener('scroll', animateOnScroll);
         });
 
-    </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const portalContainer = document.querySelector('.personal');
-        if (!portalContainer) return;
+        // Data Processing Animation Fix
+        (function createTypingAnimation() {
+            const dataProcessing = document.querySelector('.data-processing');
+            if (!dataProcessing) return;
 
-        const canvas = document.createElement('canvas');
-        Object.assign(canvas.style, {
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            width: '100%',
-            height: '100%',
-            zIndex: '0',
-            opacity: '0.4',
-            borderRadius: '12px'
-        });
-        canvas.className = 'network-canvas';
-        portalContainer.style.position = 'relative';
-        portalContainer.insertBefore(canvas, portalContainer.firstChild);
+            // Get all data lines
+            const dataLines = document.querySelectorAll('.data-line');
 
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = portalContainer.offsetWidth;
-            canvas.height = portalContainer.offsetHeight;
-        }
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const color = '#1e90ff';
-
-        class Node {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 1.2;
-                this.vy = (Math.random() - 0.5) * 1.2;
-                this.radius = Math.random() * 1.2 + 0.8;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = color;
-                ctx.fill();
-            }
-        }
-
-        const nodes = [];
-        const density = 10000; // Lower = more nodes
-        const nodeCount = Math.floor(canvas.width * canvas.height / density); // ~double previous nodes
-
-        for (let i = 0; i < nodeCount; i++) {
-            nodes.push(new Node());
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            nodes.forEach(node => {
-                node.update();
-                node.draw();
+            // Remove existing animation
+            dataLines.forEach(line => {
+                line.style.animation = 'none';
+                line.style.width = 'auto';
+                line.style.overflow = 'hidden';
+                line.style.whiteSpace = 'nowrap';
+                line.style.marginBottom = '5px';
+                line.dataset.originalText = line.textContent;
+                line.textContent = '';
             });
 
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const distanceSq = dx * dx + dy * dy;
-                    const maxDistSq = 90 * 90;
+            // Create animated typing effect with continuous loop
+            function startAnimations() {
+                dataLines.forEach((line, index) => {
+                    const originalText = line.dataset.originalText;
+                    setTimeout(() => {
+                        animateLine(line, originalText, index);
+                    }, index * 800);
+                });
+            }
 
-                    if (distanceSq < maxDistSq) {
-                        const opacity = 1 - distanceSq / maxDistSq;
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
-                        ctx.lineWidth = 0.6;
-                        ctx.stroke();
+            function animateLine(line, text, index) {
+                let charIndex = 0;
+                line.textContent = '';
+
+                const typeInterval = setInterval(() => {
+                    if (charIndex < text.length) {
+                        line.textContent += text.charAt(charIndex);
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+
+                        // After full text is shown, wait and reset for loop
+                        setTimeout(() => {
+                            // Clear and restart this line
+                            line.textContent = '';
+                            animateLine(line, text, index);
+                        }, 3000 + (index * 500)); // Different delay for each line to avoid simultaneous resets
+                    }
+                }, 50 + Math.random() * 30); // Slightly random typing speed
+            }
+
+            // Start the animations
+            startAnimations();
+        })();
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const portalContainer = document.querySelector('.personal');
+            if (!portalContainer) return;
+
+            const canvas = document.createElement('canvas');
+            Object.assign(canvas.style, {
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                zIndex: '0',
+                opacity: '0.4',
+                borderRadius: '12px'
+            });
+            canvas.className = 'network-canvas';
+            portalContainer.style.position = 'relative';
+            portalContainer.insertBefore(canvas, portalContainer.firstChild);
+
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = portalContainer.offsetWidth;
+                canvas.height = portalContainer.offsetHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const color = '#1e90ff';
+
+            class Node {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 1.2;
+                    this.vy = (Math.random() - 0.5) * 1.2;
+                    this.radius = Math.random() * 1.2 + 0.8;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                }
+            }
+
+            const nodes = [];
+            const density = 10000; // Lower = more nodes
+            const nodeCount = Math.floor(canvas.width * canvas.height / density); // ~double previous nodes
+
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                nodes.forEach(node => {
+                    node.update();
+                    node.draw();
+                });
+
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const distanceSq = dx * dx + dy * dy;
+                        const maxDistSq = 90 * 90;
+
+                        if (distanceSq < maxDistSq) {
+                            const opacity = 1 - distanceSq / maxDistSq;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
                     }
                 }
             }
-        }
 
-        animate();
-    });
-</script>
+            animate();
+        });
+    </script>
 
 </body>
 

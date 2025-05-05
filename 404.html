@@ -1,9 +1,10 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found | KSH Systems</title>
+    <title>404 Not Found | KSHPRIME INDUSTRIES</title>
     <link rel="icon" href="icons/icon.png" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="css/main.css">
     <style>
@@ -14,7 +15,7 @@
             justify-content: center;
             text-align: center;
         }
-        
+
         .error-code {
             font-family: var(--font-mono);
             font-size: 8rem;
@@ -25,7 +26,7 @@
             position: relative;
             text-shadow: 0 0 10px rgba(255, 0, 122, 0.5);
         }
-        
+
         .error-code::before {
             content: "404";
             position: absolute;
@@ -37,7 +38,7 @@
             transform: translate(-5px, -5px);
             text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
         }
-        
+
         .error-code::after {
             content: "404";
             position: absolute;
@@ -49,399 +50,9 @@
             transform: translate(5px, 5px);
             text-shadow: 0 0 10px rgba(0, 163, 255, 0.5);
         }
-        
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        .search-form {
-            max-width: 500px;
-            margin: 30px auto;
-        }
-        
-        .input-group {
-            display: flex;
-        }
-        
-        .input-group input {
-            flex: 1;
-            padding: 15px;
-            background-color: rgba(10, 32, 48, 0.8);
-            border: 1px solid rgba(0, 255, 213, 0.3);
-            border-radius: 4px 0 0 4px;
-            color: var(--text-color);
-            font-family: var(--font-sans);
-        }
-        
-        .input-group button {
-            padding: 15px 25px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            color: var(--background-darker);
-            border: none;
-            border-radius: 0 4px 4px 0;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: var(--font-mono);
-        }
-        
-        .navigation-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .nav-option {
-            padding: 10px 20px;
-            background-color: rgba(10, 32, 48, 0.8);
-            border: 1px solid rgba(0, 255, 213, 0.3);
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-option:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary-color);
-            box-shadow: 0 5px 15px rgba(0, 255, 213, 0.2);
-        }
-        
-        @keyframes flicker {
-            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-                opacity: 1;
-            }
-            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
-                opacity: 0.33;
-            }
-        }
-        
-        .flickering {
-            animation: flicker 4s linear infinite;
-        }
-    </style>
-</head>
-<body>
-    <div class="noise-overlay"></div>
-    <div class="scanlines"></div>
-    <div class="not-found">
-        <div class="container">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-controls">
-                        <span class="control red"></span>
-                        <span class="control yellow"></span>
-                        <span class="control green"></span>
-                        <span class="terminal-title">system_error.sh</span>
-                    </div>
-                </div>
-                <div class="terminal-content">
-                    <div class="command-line">$ <span class="command">locate_resource</span></div>
-                    <div class="response">// Error: Resource not found in system.</div>
-                    
-                    <div class="error-code flickering">404</div>
-                    <h1 class="glitch" data-text="ACCESS DENIED">ACCESS DENIED</h1>
-                    <p>The digital entity you are seeking does not exist in this network node.</p>
-                    <p>Signal lost. Connection terminated.</p>
-                    
-                    <div class="search-form">
-                        <div class="input-group">
-                            <input type="text" placeholder="Search for resources..." required>
-                            <button type="submit">SCAN</button>
-                        </div>
-                    </div>
-                    
-                    <div class="command-line">$ <span class="command">suggest_pathways</span></div>
-                    <div class="navigation-options">
-                        <a href="index.html" class="nav-option">Portal</a>
-                        <a href="kshprime.html" class="nav-option">KSHPRIME</a>
-                        <a href="personal.html" class="nav-option">Portfolio</a>
-                    </div>
-                    
-                    <div class="status-line">STATUS: <span class="status-inactive">DISCONNECTED</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // Simulated terminal typing effect
-        const responseLines = document.querySelectorAll('.response');
-        
-        responseLines.forEach((line, i) => {
-            const text = line.textContent;
-            line.textContent = '';
-            
-            setTimeout(() => {
-                let charIndex = 0;
-                const typeInterval = setInterval(() => {
-                    if (charIndex < text.length) {
-                        line.textContent += text.charAt(charIndex);
-                        charIndex++;
-                    } else {
-                        clearInterval(typeInterval);
-                    }
-                }, 20);
-            }, i * 500);
-        });
-        
-        // Search form submission
-        const searchForm = document.querySelector('.search-form');
-        searchForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const searchInput = this.querySelector('input').value.trim();
-            
-            if (searchInput) {
-                // Redirect to home page or search results
-                window.location.href = 'index.html';
-            }
-        });
-        
-        // Random glitch effect
-        setInterval(() => {
-            const glitchElement = document.querySelector('.glitch');
-            glitchElement.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
-            
-            setTimeout(() => {
-                glitchElement.style.transform = 'translate(0, 0)';
-            }, 100);
-        }, 3000);
-    </script>
-</body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found | KSHPRIME INDUSTRIES</title>
-    <link rel="icon" href="icons/icon.png" type="image/png" sizes="32x32">
-    <link rel="stylesheet" href="css/main.css">
-    <style>
-        /* Base styles with enhanced cyberpunk aesthetic */
-        body {
-            margin: 0;
-            background-color: var(--background-darker);
-            color: var(--text-color);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-        }
-
-        /* Animated radial gradient background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 20% 35%, rgba(255, 0, 122, 0.15) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(0, 255, 213, 0.15) 0%, transparent 40%);
-            animation: pulseBackground 15s infinite alternate;
-            z-index: -2;
-        }
-
-        @keyframes pulseBackground {
-            0% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.8;
-                transform: scale(1.2);
-            }
-
-            100% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-        }
-
-        /* Digital grid background */
-        body::after {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background:
-                linear-gradient(rgba(0, 255, 213, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 213, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: -1;
-            transform-origin: center;
-            animation: rotateGrid 120s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes rotateGrid {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .not-found {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Enhanced glitchy error code */
-        .error-code {
-            font-family: var(--font-mono);
-            font-size: 12rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            line-height: 0.8;
-            margin-bottom: 20px;
-            position: relative;
-            text-shadow: 0 0 10px rgba(255, 0, 122, 0.5);
-            transform-style: preserve-3d;
-            perspective: 500px;
-            animation: errorFloat 6s ease-in-out infinite, errorRotate 10s ease infinite;
-        }
-
-        @keyframes errorFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) rotateX(10deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotateX(-10deg);
-            }
-        }
-
-        @keyframes errorRotate {
-            0% {
-                transform: rotateY(0deg) rotateX(10deg);
-            }
-
-            25% {
-                transform: rotateY(5deg) rotateX(0deg);
-            }
-
-            50% {
-                transform: rotateY(0deg) rotateX(-10deg);
-            }
-
-            75% {
-                transform: rotateY(-5deg) rotateX(0deg);
-            }
-
-            100% {
-                transform: rotateY(0deg) rotateX(10deg);
-            }
-        }
-
-        /* RGB Split effect with animations */
-        .error-code::before {
-            content: "404";
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: var(--primary-color);
-            opacity: 0.7;
-            z-index: -1;
-            animation: glitchBefore 2s infinite alternate;
-            text-shadow: 0 0 20px var(--primary-color);
-        }
-
-        @keyframes glitchBefore {
-
-            0%,
-            100% {
-                transform: translate(-7px, -5px);
-            }
-
-            25% {
-                transform: translate(-3px, -8px);
-            }
-
-            50% {
-                transform: translate(-10px, -2px);
-            }
-
-            75% {
-                transform: translate(-5px, -6px);
-            }
-        }
-
-        .error-code::after {
-            content: "404";
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: var(--secondary-color);
-            opacity: 0.7;
-            z-index: -1;
-            animation: glitchAfter 3s infinite alternate-reverse;
-            text-shadow: 0 0 20px var(--secondary-color);
-        }
-
-        @keyframes glitchAfter {
-
-            0%,
-            100% {
-                transform: translate(7px, 5px);
-            }
-
-            25% {
-                transform: translate(3px, 8px);
-            }
-
-            50% {
-                transform: translate(10px, 2px);
-            }
-
-            75% {
-                transform: translate(5px, 6px);
-            }
-        }
-
-        /* Advanced scanner overlay */
-        .scanline-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 20;
-        }
 
         .scanlines {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -451,139 +62,27 @@
                     rgba(0, 0, 0, 0.15) 1px,
                     transparent 1px,
                     transparent 2px);
-            opacity: 0.4;
-            animation: moveLines 10s linear infinite;
+            pointer-events: none;
+            z-index: 10;
         }
 
-        @keyframes moveLines {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: 0 100%;
-            }
-        }
-
-        /* Horizontal scanning line */
-        .scan-line {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(0, 255, 213, 0.5),
-                    transparent);
-            box-shadow: 0 0 20px rgba(0, 255, 213, 0.8);
-            animation: scanDown 3s linear infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes scanDown {
-            0% {
-                top: -5px;
-            }
-
-            100% {
-                top: 100%;
-            }
-        }
-
-        /* Vertical scanning line */
-        .scan-line-vertical {
-            position: absolute;
-            width: 5px;
-            height: 100%;
-            left: 0;
-            background: linear-gradient(0deg,
-                    transparent,
-                    rgba(255, 0, 122, 0.5),
-                    transparent);
-            box-shadow: 0 0 20px rgba(255, 0, 122, 0.8);
-            animation: scanAcross 5s linear infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes scanAcross {
-            0% {
-                left: -5px;
-            }
-
-            100% {
-                left: 100%;
-            }
-        }
-
-        /* Advanced search form with animations */
         .search-form {
             max-width: 500px;
             margin: 30px auto;
-            position: relative;
-            opacity: 0;
-            animation: fadeIn 0.5s 2.5s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
         }
 
         .input-group {
             display: flex;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .input-group::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(0deg,
-                    var(--primary-color),
-                    var(--secondary-color));
-            z-index: 1;
-            animation: inputPulse 2s infinite alternate;
-        }
-
-        @keyframes inputPulse {
-            0% {
-                opacity: 0.5;
-                height: 100%;
-            }
-
-            100% {
-                opacity: 1;
-                height: 100%;
-            }
         }
 
         .input-group input {
             flex: 1;
-            padding: 15px 15px 15px 20px;
+            padding: 15px;
             background-color: rgba(10, 32, 48, 0.8);
             border: 1px solid rgba(0, 255, 213, 0.3);
             border-radius: 4px 0 0 4px;
             color: var(--text-color);
-            font-family: var(--font-mono);
-            transition: all 0.3s ease;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow:
-                inset 0 0 10px rgba(0, 0, 0, 0.3),
-                0 0 15px rgba(0, 255, 213, 0.5);
-        }
-
-        .input-group input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            font-family: var(--font-sans);
         }
 
         .input-group button {
@@ -595,246 +94,75 @@
             font-weight: bold;
             cursor: pointer;
             font-family: var(--font-mono);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        .input-group button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent);
-            transition: 0.5s;
-        }
-
-        .input-group button:hover::before {
-            left: 100%;
-        }
-
-        .input-group button:active {
-            transform: scale(0.95);
-        }
-
-        /* Enhanced navigation options */
         .navigation-options {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             margin-top: 30px;
-            opacity: 0;
-            animation: fadeIn 0.5s 3s forwards;
         }
 
         .nav-option {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background-color: rgba(10, 32, 48, 0.8);
             border: 1px solid rgba(0, 255, 213, 0.3);
             border-radius: 4px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            color: var(--text-color);
-            text-decoration: none;
-            font-family: var(--font-mono);
-            letter-spacing: 1px;
-        }
-
-        .nav-option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    transparent,
-                    rgba(0, 255, 213, 0.1),
-                    transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-            z-index: -1;
-        }
-
-        .nav-option:hover::before {
-            transform: translateX(100%);
-        }
-
-        .nav-option::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg,
-                    var(--primary-color),
-                    var(--secondary-color));
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s ease;
-        }
-
-        .nav-option:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
         }
 
         .nav-option:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: var(--primary-color);
-            box-shadow:
-                0 10px 20px rgba(0, 0, 0, 0.3),
-                0 0 15px rgba(0, 255, 213, 0.3);
-            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 255, 213, 0.2);
         }
 
-        /* Enhanced terminal window */
-        .terminal-window {
-            max-width: 800px;
-            background-color: rgba(7, 21, 33, 0.85);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 255, 213, 0.3);
-            box-shadow:
-                0 0 30px rgba(0, 0, 0, 0.5),
-                0 0 50px rgba(0, 255, 213, 0.1);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            transform: rotateX(5deg);
-            animation: terminalFloat 6s ease-in-out infinite;
-            backdrop-filter: blur(10px);
-        }
-
-        @keyframes terminalFloat {
+        @keyframes flicker {
 
             0%,
+            19.999%,
+            22%,
+            62.999%,
+            64%,
+            64.999%,
+            70%,
             100% {
-                transform: rotateX(5deg) translateY(0);
+                opacity: 1;
             }
 
-            50% {
-                transform: rotateX(5deg) translateY(-10px);
-            }
-        }
-
-        /* Terminal border animation */
-        .terminal-window::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            border: 1px solid transparent;
-            border-radius: 8px;
-            background: linear-gradient(135deg,
-                    var(--primary-color),
-                    transparent 40%,
-                    transparent 60%,
-                    var(--secondary-color) 100%) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderRotate 4s linear infinite;
-        }
-
-        @keyframes borderRotate {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            100% {
-                background-position: 135% 0%;
+            20%,
+            21.999%,
+            63%,
+            63.999%,
+            65%,
+            69.999% {
+                opacity: 0.33;
             }
         }
 
-        .terminal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: rgba(7, 21, 33, 0.9);
-            border-bottom: 1px solid rgba(0, 255, 213, 0.2);
+        .flickering {
+            animation: flicker 4s linear infinite;
+        }
+
+        /* Terminal control dots animation */
+        .control {
             position: relative;
+            animation: controlFloat 3s infinite ease-in-out;
         }
 
-        /* Data flow line in header */
-        .terminal-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg,
-                    transparent 0%,
-                    rgba(0, 255, 213, 0.3) 20%,
-                    rgba(0, 255, 213, 0.8) 50%,
-                    rgba(0, 255, 213, 0.3) 80%,
-                    transparent 100%);
-            animation: dataFlow 3s infinite linear;
-            transform: translateX(-100%);
+        .control.red {
+            animation-delay: 0s;
         }
 
-        @keyframes dataFlow {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
+        .control.yellow {
+            animation-delay: 0.5s;
         }
 
-        /* Enhanced controls animation */
-        .terminal-controls {
-            display: flex;
-            align-items: center;
-        }
-
-        .terminal-controls .control {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 0 5px currentColor;
-            animation: controlPulse 2s infinite alternate;
-        }
-
-        @keyframes controlPulse {
-            0% {
-                box-shadow: 0 0 5px currentColor;
-            }
-
-            100% {
-                box-shadow: 0 0 15px currentColor;
-            }
-        }
-
-        .terminal-controls .control.red {
-            background-color: #ff3b30;
-            animation: controlFloat 1.5s ease-in-out infinite;
-        }
-
-        .terminal-controls .control.yellow {
-            background-color: #ffcc00;
-            animation: controlFloat 1.5s ease-in-out 0.2s infinite;
-        }
-
-        .terminal-controls .control.green {
-            background-color: #34c759;
-            animation: controlFloat 1.5s ease-in-out 0.4s infinite;
+        .control.green {
+            animation-delay: 1s;
         }
 
         @keyframes controlFloat {
@@ -845,455 +173,708 @@
             }
 
             50% {
-                transform: translateY(-5px);
+                transform: translateY(-3px);
             }
         }
 
-        .terminal-title {
-            margin-left: 15px;
+        /* Glitch text effect */
+        .glitch {
+            position: relative;
             color: var(--text-color);
-            font-family: var(--font-mono);
-            font-size: 14px;
-            position: relative;
-            animation: textFlicker 5s infinite;
+            font-size: 2rem;
+            letter-spacing: 0.2em;
+            animation: glitchText 5s infinite linear alternate-reverse;
         }
 
-        @keyframes textFlicker {
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            color: #ff00ad;
+            z-index: -1;
+            clip: rect(44px, 450px, 56px, 0);
+            transform: skew(0.5deg);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+            text-shadow: 0 0 5px #ff00ad;
+        }
+
+        .glitch::after {
+            color: #00ffd5;
+            z-index: -2;
+            clip: rect(44px, 450px, 56px, 0);
+            transform: skew(-0.5deg);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+            text-shadow: 0 0 5px #00ffd5;
+        }
+
+        @keyframes glitchText {
 
             0%,
             100% {
-                opacity: 1;
+                text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
             }
 
-            3%,
-            8% {
-                opacity: 0.4;
+            33% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+                    3px 3px 5px rgba(0, 255, 255, 0.5),
+                    -3px -3px 5px rgba(255, 0, 255, 0.5);
             }
 
-            5%,
-            9% {
-                opacity: 1;
-            }
-
-            12% {
-                opacity: 0.5;
-            }
-
-            13% {
-                opacity: 1;
+            66% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.8),
+                    -3px 3px 5px rgba(0, 255, 255, 0.5),
+                    3px -3px 5px rgba(255, 0, 255, 0.5);
             }
         }
 
-        .terminal-content {
-            padding: 25px;
-            position: relative;
-        }
-
-        /* Terminal typing animation */
-        .command-line {
-            font-family: var(--font-mono);
-            color: var(--text-color);
-            margin-bottom: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 2s steps(40, end);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .command-line:nth-child(1) {
-            animation: typing 2s steps(40, end) forwards;
-        }
-
-        .command-line:nth-child(4) {
-            animation: typing 2s 3s steps(40, end) forwards;
-        }
-
-        @keyframes typing {
-            from {
-                width: 0;
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                width: 100%;
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .command {
-            color: var(--primary-color);
-            position: relative;
-        }
-
-        .command.blink {
-            animation: cursorBlink 1s infinite step-end;
-        }
-
-        @keyframes cursorBlink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        /* Enhanced flicker effect with noise */
-        .response {
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-            font-family: var(--font-mono);
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 2s forwards;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes flicker {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            3%,
-            8% {
-                opacity: 0.4;
-            }
-
-            5%,
-            9% {
-                opacity: 1;
-            }
-
-            12% {
-                opacity: 0.5;
-            }
-
-            13% {
-                opacity: 1;
-            }
-        }
-
-        .flickering {
-            animation:
-                flicker 4s linear infinite,
-                glitchMove 0.3s infinite alternate-reverse;
-        }
-
-        @keyframes glitchMove {
+        @keyframes glitch-anim {
             0% {
-                transform: translate(0);
+                clip: rect(55px, 9999px, 91px, 0);
+                transform: skew(0.52deg);
+            }
+
+            5% {
+                clip: rect(83px, 9999px, 98px, 0);
+                transform: skew(0.6deg);
             }
 
             10% {
-                transform: translate(-2px, 2px);
+                clip: rect(66px, 9999px, 82px, 0);
+                transform: skew(0.29deg);
             }
 
-            20% {
-                transform: translate(2px, -2px);
-            }
-
-            30% {
-                transform: translate(-2px, -2px);
-            }
-
-            40% {
-                transform: translate(2px, 2px);
-            }
-
-            50% {
-                transform: translate(-2px, 2px);
-            }
-
-            60% {
-                transform: translate(2px, -2px);
-            }
-
-            70% {
-                transform: translate(-2px, -2px);
-            }
-
-            80% {
-                transform: translate(2px, 2px);
-            }
-
-            90% {
-                transform: translate(-2px, 2px);
-            }
-
-            100% {
-                transform: translate(0);
-            }
-        }
-
-        /* Text elements animation */
-        h1.glitch {
-            position: relative;
-            color: var(--text-color);
-            font-size: 2.5rem;
-            margin: 10px 0 20px;
-            letter-spacing: 5px;
-            animation: textGlitch 2.5s infinite;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 1.5s forwards, textGlitch 2.5s 1.5s infinite;
-        }
-
-        @keyframes textGlitch {
-
-            0%,
-            100% {
-                text-shadow: none;
-                transform: translateX(0);
-            }
-
-            5%,
             15% {
-                text-shadow:
-                    -2px 0 var(--accent-color),
-                    2px 0 var(--primary-color);
-                transform: translateX(-2px);
+                clip: rect(13px, 9999px, 52px, 0);
+                transform: skew(0.38deg);
             }
 
-            10%,
             20% {
-                text-shadow:
-                    2px 0 var(--accent-color),
-                    -2px 0 var(--primary-color);
-                transform: translateX(2px);
+                clip: rect(65px, 9999px, 91px, 0);
+                transform: skew(0.45deg);
             }
 
             25% {
-                text-shadow: none;
-                transform: translateX(0);
+                clip: rect(7px, 9999px, 100px, 0);
+                transform: skew(0.05deg);
             }
 
-            30%,
+            30% {
+                clip: rect(1px, 9999px, 31px, 0);
+                transform: skew(0.31deg);
+            }
+
+            35% {
+                clip: rect(5px, 9999px, 35px, 0);
+                transform: skew(0.86deg);
+            }
+
             40% {
-                text-shadow:
-                    -2px 0 var(--accent-color),
-                    2px 0 var(--primary-color);
-                transform: translateX(-3px);
+                clip: rect(95px, 9999px, 59px, 0);
+                transform: skew(0.4deg);
             }
 
-            35%,
             45% {
-                text-shadow:
-                    2px 0 var(--accent-color),
-                    -2px 0 var(--primary-color);
-                transform: translateX(3px);
+                clip: rect(55px, 9999px, 67px, 0);
+                transform: skew(0.52deg);
             }
 
             50% {
-                text-shadow: none;
-                transform: translateX(0);
+                clip: rect(93px, 9999px, 32px, 0);
+                transform: skew(0.96deg);
+            }
+
+            55% {
+                clip: rect(91px, 9999px, 61px, 0);
+                transform: skew(0.34deg);
+            }
+
+            60% {
+                clip: rect(1px, 9999px, 49px, 0);
+                transform: skew(0.02deg);
+            }
+
+            65% {
+                clip: rect(9px, 9999px, 72px, 0);
+                transform: skew(0.48deg);
+            }
+
+            70% {
+                clip: rect(66px, 9999px, 13px, 0);
+                transform: skew(0.95deg);
+            }
+
+            75% {
+                clip: rect(76px, 9999px, 95px, 0);
+                transform: skew(0.11deg);
+            }
+
+            80% {
+                clip: rect(93px, 9999px, 62px, 0);
+                transform: skew(0.66deg);
+            }
+
+            85% {
+                clip: rect(93px, 9999px, 4px, 0);
+                transform: skew(0.35deg);
+            }
+
+            90% {
+                clip: rect(1px, 9999px, 2px, 0);
+                transform: skew(0.94deg);
+            }
+
+            95% {
+                clip: rect(11px, 9999px, 35px, 0);
+                transform: skew(0.31deg);
+            }
+
+            100% {
+                clip: rect(19px, 9999px, 25px, 0);
+                transform: skew(0.89deg);
             }
         }
 
-        /* Message text with digital effect */
-        p {
-            color: var(--text-color);
-            max-width: 600px;
-            margin: 0 auto 15px;
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(18px, 9999px, 95px, 0);
+                transform: skew(0.44deg);
+            }
+
+            5% {
+                clip: rect(95px, 9999px, 51px, 0);
+                transform: skew(0.3deg);
+            }
+
+            10% {
+                clip: rect(32px, 9999px, 45px, 0);
+                transform: skew(0.67deg);
+            }
+
+            15% {
+                clip: rect(40px, 9999px, 96px, 0);
+                transform: skew(0.84deg);
+            }
+
+            20% {
+                clip: rect(42px, 9999px, 51px, 0);
+                transform: skew(0.98deg);
+            }
+
+            25% {
+                clip: rect(25px, 9999px, 51px, 0);
+                transform: skew(0.06deg);
+            }
+
+            30% {
+                clip: rect(38px, 9999px, 67px, 0);
+                transform: skew(0.85deg);
+            }
+
+            35% {
+                clip: rect(82px, 9999px, 23px, 0);
+                transform: skew(0.66deg);
+            }
+
+            40% {
+                clip: rect(80px, 9999px, 32px, 0);
+                transform: skew(0.89deg);
+            }
+
+            45% {
+                clip: rect(23px, 9999px, 50px, 0);
+                transform: skew(0.65deg);
+            }
+
+            50% {
+                clip: rect(70px, 9999px, 41px, 0);
+                transform: skew(0.67deg);
+            }
+
+            55% {
+                clip: rect(51px, 9999px, 8px, 0);
+                transform: skew(0.5deg);
+            }
+
+            60% {
+                clip: rect(30px, 9999px, 64px, 0);
+                transform: skew(0.29deg);
+            }
+
+            65% {
+                clip: rect(100px, 9999px, 70px, 0);
+                transform: skew(0.59deg);
+            }
+
+            70% {
+                clip: rect(66px, 9999px, 76px, 0);
+                transform: skew(0.35deg);
+            }
+
+            75% {
+                clip: rect(100px, 9999px, 97px, 0);
+                transform: skew(0.88deg);
+            }
+
+            80% {
+                clip: rect(71px, 9999px, 92px, 0);
+                transform: skew(0.42deg);
+            }
+
+            85% {
+                clip: rect(59px, 9999px, 95px, 0);
+                transform: skew(0.7deg);
+            }
+
+            90% {
+                clip: rect(50px, 9999px, 37px, 0);
+                transform: skew(0.1deg);
+            }
+
+            95% {
+                clip: rect(79px, 9999px, 61px, 0);
+                transform: skew(0.79deg);
+            }
+
+            100% {
+                clip: rect(12px, 9999px, 28px, 0);
+                transform: skew(0.73deg);
+            }
+        }
+
+        /* Neural network background */
+        .neural-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Button hover effect */
+        .input-group button {
             position: relative;
-            opacity: 0;
-            transform: translateY(20px);
+            overflow: hidden;
         }
 
-        p:nth-of-type(1) {
-            animation: fadeUp 0.8s 2s forwards;
+        .input-group button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
 
-        p:nth-of-type(2) {
-            animation: fadeUp 0.8s 2.2s forwards;
+        .input-group button:hover::after {
+            left: 100%;
         }
 
-        p:hover {
-            color: var(--primary-color);
-            text-shadow: 0 0 8px var(--primary-color);
+        /* Terminal blinking cursor */
+        .command::after {
+            content: '|';
+            animation: blink 1s infinite step-end;
         }
 
-        /* Status line animation */
-        .status-line {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 30px;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0;
-            animation: fadeIn 0.5s 3.5s forwards;
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
         }
 
+        /* Status line */
         .status-inactive {
-            color: #ff3b30;
-            margin-left: 8px;
-            position: relative;
-            animation: statusBlink 1.5s infinite;
+            color: var(--accent-color);
+            animation: statusBlink 2s infinite;
         }
 
         @keyframes statusBlink {
 
             0%,
-            100% {
+            49% {
                 opacity: 1;
             }
 
-            50% {
-                opacity: 0.3;
+            50%,
+            100% {
+                opacity: 0.5;
             }
         }
 
-        /* Digital noise overlay */
-        .digital-noise {
-            position: fixed;
+        /* Nav option hover effect */
+        .nav-option::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAGAQYAAwAAAAEAAgAAARIAAwAAAAEAAQAAARoABQAAAAEAAABWARsABQAAAAEAAABeASgAAwAAAAEAAgAAh2kABAAAAAEAAABmAAAAAAAAAJAAAAABAAAAkAAAAAEAAqACAAQAAAABAAAAMqADAAQAAAABAAAAMgAAAACTc7RjAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACZmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+MzI8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+MzI8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KqWI9KwAAABdJREFUaAXtwTEBAAAAwqD1T20ND6AAAAAA4NcAEsAAAcAzTQsAAAAASUVORK5CYII=');
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 10;
-            mix-blend-mode: overlay;
-            animation: noiseAnimation 0.5s steps(10) infinite;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 213, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+            z-index: -1;
         }
 
-        @keyframes noiseAnimation {
+        .nav-option:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Data scanner effect */
+        .scanner-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(0, 255, 213, 0.8),
+                    transparent);
+            z-index: 9;
+            animation: scanDown 3s linear infinite;
+            box-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+            pointer-events: none;
+        }
+
+        @keyframes scanDown {
             0% {
-                background-position: 0 0;
+                transform: translateY(-10px);
+                opacity: 0;
             }
 
             10% {
-                background-position: -5% -5%;
-            }
-
-            20% {
-                background-position: -10% 5%;
-            }
-
-            30% {
-                background-position: 5% -10%;
-            }
-
-            40% {
-                background-position: -5% 15%;
-            }
-
-            50% {
-                background-position: -10% 5%;
-            }
-
-            60% {
-                background-position: 15% 0%;
-            }
-
-            70% {
-                background-position: 0% 10%;
-            }
-
-            80% {
-                background-position: -15% -5%;
+                opacity: 1;
             }
 
             90% {
-                background-position: 10% 5%;
+                opacity: 1;
             }
 
             100% {
-                background-position: 5% 0%;
+                transform: translateY(100vh);
+                opacity: 0;
             }
         }
 
-        /* Power disruption effect */
-        .power-disruption {
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            border-radius: 50%;
+            background-color: rgba(0, 255, 213, 0.5);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .terminal-window {
+            animation: terminal-glow 8s ease-in-out infinite;
+        }
+
+        @keyframes terminal-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(0, 255, 213, 0.3), 0 0 20px rgba(0, 255, 213, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(0, 255, 213, 0.7), 0 0 60px rgba(0, 255, 213, 0.4);
+            }
+        }
+
+        /* Digital Rain Effect (Matrix-style) */
+        .digital-rain-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.1);
-            opacity: 0;
             pointer-events: none;
-            z-index: 30;
+            z-index: -1;
+            opacity: 0.07;
         }
 
-        /* Binary rain effect */
-        .binary-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .binary-column {
+        .rain-column {
             position: absolute;
-            width: 20px;
-            color: rgba(0, 255, 213, 0.15);
+            top: -100px;
             font-family: monospace;
-            font-size: 1.2rem;
-            text-align: center;
-            user-select: none;
-            filter: blur(0.5px);
+            color: var(--primary-color);
+            font-size: 14px;
+            line-height: 1;
+            text-shadow: 0 0 5px var(--primary-color);
+            white-space: nowrap;
+            animation-name: digitalRain;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
         }
 
-        /* Media queries for mobile */
+        @keyframes digitalRain {
+            0% {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(calc(100vh + 100px));
+                opacity: 0;
+            }
+        }
+
+        /* HUD Overlay Elements */
+        .hud-corner {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.7;
+        }
+
+        .hud-top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .hud-top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .hud-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .hud-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .hud-scanner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 255, 213, 0.5) 50%,
+                    transparent 100%);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 999;
+            animation: scanScreen 4s linear infinite;
+        }
+
+        @keyframes scanScreen {
+            0% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Circuit Board Pattern */
+        .circuit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L90 10 L90 90 L10 90 Z' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 L30 30 L10 30' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M70 10 L70 30 L90 30' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 90 L30 70 L10 70' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M70 90 L70 70 L90 70' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3C/svg%3E");
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animated Tech Background Grid */
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(0, 255, 213, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 213, 0.05) 1px, transparent 1px);
+            z-index: -2;
+            opacity: 0.3;
+            animation: gridPulse 4s infinite alternate;
+        }
+
+        @keyframes gridPulse {
+            0% {
+                opacity: 0.2;
+                background-size: 50px 50px;
+            }
+
+            100% {
+                opacity: 0.4;
+                background-size: 51px 51px;
+            }
+        }
+
+        /* Data Processing Animation - Fixed */
+        .data-processing {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary-color);
+            pointer-events: none;
+            text-align: right;
+            opacity: 0.7;
+            z-index: 1000;
+            background-color: rgba(7, 21, 33, 0.7);
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 2px solid var(--primary-color);
+            max-width: 300px;
+        }
+
+        .data-line {
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Scanner Effect */
+        .scan-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            pointer-events: none;
+            animation: scanEffect 10s linear infinite;
+            opacity: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 255, 213, 0) 0%,
+                    rgba(0, 255, 213, 0.1) 50%,
+                    rgba(0, 255, 213, 0) 100%);
+        }
+
+        @keyframes scanEffect {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+
+            10%,
+            90% {
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Loading Indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .loading-circle {
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spinLoading 1s linear infinite;
+        }
+
+        .loading-circle::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2px solid transparent;
+            border-top-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: spinLoading 2s linear infinite reverse;
+        }
+
+        @keyframes spinLoading {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
         @media (max-width: 768px) {
-            .error-code {
-                font-size: 8rem;
+            .data-processing {
+                display: none;
             }
 
-            h1.glitch {
-                font-size: 1.8rem;
+            .hud-corner {
+                display: none;
             }
 
-            .terminal-window {
-                margin: 0 20px;
-                transform: rotateX(0);
-            }
-
-            .navigation-options {
-                flex-direction: column;
-            }
-
-            .nav-option {
-                width: 100%;
+            .loading-indicator {
+                display: none;
             }
         }
-
     </style>
+
+
 </head>
-<body>
+
+<body class="body">
     <div class="noise-overlay"></div>
-    <div class="scanline-container">
-        <div class="scanlines"></div>
-        <div class="scan-line"></div>
-        <div class="scan-line-vertical"></div>
-    </div>
-    <div class="digital-noise"></div>
-    <div class="binary-rain" id="binaryRain"></div>
-    <div class="power-disruption" id="powerDisruption"></div>
+    <div class="scanlines"></div>
     
+
     <div class="not-found">
         <div class="container">
             <div class="terminal-window">
@@ -1308,40 +889,77 @@
                 <div class="terminal-content">
                     <div class="command-line">$ <span class="command">locate_resource</span></div>
                     <div class="response">// Error: Resource not found in system.</div>
-                    
+
                     <div class="error-code flickering">404</div>
                     <h1 class="glitch" data-text="ACCESS DENIED">ACCESS DENIED</h1>
                     <p>The digital entity you are seeking does not exist in this network node.</p>
                     <p>Signal lost. Connection terminated.</p>
-                    
-                    <div class="search-form">
-                        <div class="input-group">
-                            <input type="text" placeholder="Search for resources..." required>
-                            <button type="submit">SCAN</button>
+
+                    <!-- Simple Cyber Scanner Component -->
+                    <div style="margin: 30px 0;">
+                        <div style="background-color: rgba(10, 32, 48, 0.7); border: 1px solid #00ffd5; border-radius: 4px; padding: 20px; font-family: monospace;">
+                            <div id="simple-scan-text" style="color: #00ffd5; margin-bottom: 15px;">Scanning system directories...</div>
+                            
+                            <div style="height: 6px; background-color: rgba(0, 0, 0, 0.3); border-radius: 3px; overflow: hidden; margin-bottom: 15px;">
+                                <div id="simple-progress-bar" style="height: 100%; background: linear-gradient(90deg, #00ffd5, #ff007a); width: 0%; transition: width 3s ease-in-out;"></div>
+                            </div>
+                            
+                            <div style="color: #ff007a;">
+                                <div>ERROR: Requested directory or file not found</div>
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div class="command-line">$ <span class="command">suggest_pathways</span></div>
                     <div class="navigation-options">
                         <a href="index.html" class="nav-option">Portal</a>
                         <a href="kshprime.html" class="nav-option">KSHPRIME</a>
                         <a href="personal.html" class="nav-option">Portfolio</a>
                     </div>
-                    
+
                     <div class="status-line">STATUS: <span class="status-inactive">DISCONNECTED</span></div>
                 </div>
             </div>
         </div>
     </div>
+
     
+    <div class="digital-rain-container" id="digitalRain"></div>
+    <div class="circuit-overlay"></div>
+    <div class="tech-grid"></div>
+
+    
+    <div class="hud-corner hud-top-left"></div>
+    <div class="hud-corner hud-top-right"></div>
+    <div class="hud-corner hud-bottom-left"></div>
+    <div class="hud-corner hud-bottom-right"></div>
+    <div class="hud-scanner"></div>
+
+   
+    <div class="scan-effect"></div>
+
+   
+    <div class="data-processing">
+        <div class="data-line">Initializing kshprime_sys.exe...</div>
+        <div class="data-line">Network status: online</div>
+        <div class="data-line">Securing connection...</div>
+        <div class="data-line">Encrypting data blocks...</div>
+        <div class="data-line">Running system diagnostics...</div>
+    </div>
+
+   
+    <div class="loading-indicator">
+        <div class="loading-circle"></div>
+    </div>
+
     <script>
         // Simulated terminal typing effect
         const responseLines = document.querySelectorAll('.response');
-        
+
         responseLines.forEach((line, i) => {
             const text = line.textContent;
             line.textContent = '';
-            
+
             setTimeout(() => {
                 let charIndex = 0;
                 const typeInterval = setInterval(() => {
@@ -1354,126 +972,836 @@
                 }, 20);
             }, i * 500);
         });
-        
+
         // Search form submission
         const searchForm = document.querySelector('.search-form');
-        searchForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const searchInput = this.querySelector('input').value.trim();
-            
-            if (searchInput) {
-                // Redirect to home page or search results
-                window.location.href = 'index.html';
-            }
-        });
-        
+        if (searchForm) {
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const searchInput = this.querySelector('input').value.trim();
+
+                if (searchInput) {
+                    // Redirect to home page or search results
+                    window.location.href = 'index.html';
+                }
+            });
+        }
+
         // Random glitch effect
         setInterval(() => {
             const glitchElement = document.querySelector('.glitch');
             glitchElement.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
-            
+
             setTimeout(() => {
                 glitchElement.style.transform = 'translate(0, 0)';
             }, 100);
         }, 3000);
-        
-        // Power disruption effect
-        function randomPowerDisruption() {
-            const powerDisruption = document.getElementById('powerDisruption');
-            
-            // Random interval between disruptions
-            const interval = Math.random() * 10000 + 5000;
-            
-            setTimeout(() => {
-                // Flash the screen
-                powerDisruption.style.opacity = 0.8;
-                setTimeout(() => {
-                    powerDisruption.style.opacity = 0;
-                }, 100);
-                
-                // Schedule next disruption
-                randomPowerDisruption();
-            }, interval);
-        }
-        
-        // Start power disruptions
-        randomPowerDisruption();
-        
-        // Binary rain effect
-        function createBinaryRain() {
-            const rainContainer = document.getElementById('binaryRain');
-            const columnCount = Math.floor(window.innerWidth / 20);
-            
-            for (let i = 0; i < columnCount; i++) {
-                const column = document.createElement('div');
-                column.className = 'binary-column';
-                column.style.left = (i * 20) + 'px';
-                column.style.animationDelay = Math.random() * 2 + 's';
-                column.style.top = -1000 + Math.random() * 1000 + 'px';
-                
-                let binaryString = '';
-                const length = Math.floor(Math.random() * 20) + 10;
-                
-                for (let j = 0; j < length; j++) {
-                    binaryString += Math.random() > 0.5 ? '1' : '0';
-                    if (j < length - 1) binaryString += '<br>';
+
+        // Neural network background
+        document.addEventListener('DOMContentLoaded', function () {
+            const canvas = document.getElementById('neuralNetwork');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas dimensions
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Resize on window resize
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            // Neural network parameters
+            const nodes = [];
+            const numNodes = Math.min(80, Math.floor(window.innerWidth / 50));
+            const connectionDistance = Math.min(200, window.innerWidth / 4);
+
+            // Create nodes
+            for (let i = 0; i < numNodes; i++) {
+                nodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    vx: Math.random() * 0.5 - 0.25,
+                    vy: Math.random() * 0.5 - 0.25,
+                    pulseOpacity: 0,
+                    pulseDirection: 1
+                });
+            }
+
+            // Animation function
+            function animate() {
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw connections and nodes
+                for (let i = 0; i < nodes.length; i++) {
+                    const node = nodes[i];
+
+                    // Update node position
+                    node.x += node.vx;
+                    node.y += node.vy;
+
+                    // Boundary checking
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+
+                    // Update pulse opacity
+                    node.pulseOpacity += 0.01 * node.pulseDirection;
+                    if (node.pulseOpacity >= 1 || node.pulseOpacity <= 0) {
+                        node.pulseDirection *= -1;
+                    }
+
+                    // Draw connections
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const otherNode = nodes[j];
+                        const dx = node.x - otherNode.x;
+                        const dy = node.y - otherNode.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < connectionDistance) {
+                            const opacity = (1 - distance / connectionDistance) * 0.4;
+                            ctx.beginPath();
+                            ctx.moveTo(node.x, node.y);
+                            ctx.lineTo(otherNode.x, otherNode.y);
+                            ctx.strokeStyle = `rgba(0, 255, 213, ${opacity})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+
+                    // Draw node
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(0, 255, 213, ${0.3 + node.pulseOpacity * 0.3})`;
+                    ctx.fill();
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            // Start animation
+            animate();
+
+            // Add floating particles
+            const createParticles = () => {
+                const particleCount = 15;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+
+                    // Random properties
+                    const size = Math.random() * 3 + 1;
+                    const posX = Math.random() * window.innerWidth;
+                    const posY = Math.random() * window.innerHeight;
+                    const duration = Math.random() * 15 + 5;
+                    const delay = Math.random() * 5;
+
+                    // Set styles
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}px`;
+                    particle.style.top = `${posY}px`;
+                    particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+                    particle.style.boxShadow = `0 0 ${size * 2}px rgba(0, 255, 213, 0.5)`;
+
+                    // Animation
+                    particle.style.animation = `
+                        floatX ${duration}s infinite linear ${delay}s,
+                        floatY ${duration * 0.8}s infinite ease-in-out ${delay}s,
+                        pulse ${duration * 0.5}s infinite ease-in-out ${delay}s
+                    `;
+
+                    document.body.appendChild(particle);
+                }
+            };
+
+            // Create particle animations
+            const particleStyle = document.createElement('style');
+            particleStyle.textContent = `
+                @keyframes floatX {
+                    0% { transform: translateX(0); }
+                    25% { transform: translateX(100px); }
+                    50% { transform: translateX(0); }
+                    75% { transform: translateX(-100px); }
+                    100% { transform: translateX(0); }
                 }
                 
-                column.innerHTML = binaryString;
-                rainContainer.appendChild(column);
+                @keyframes floatY {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(100px); }
+                }
                 
-                // Animate the column
-                animateBinaryColumn(column);
+                @keyframes pulse {
+                    0%, 100% { opacity: 0.1; }
+                    50% { opacity: 0.5; }
+                }
+            `;
+            document.head.appendChild(particleStyle);
+
+            createParticles();
+
+            // Add ripple effect to buttons and links
+            const addRippleEffect = () => {
+                const buttons = document.querySelectorAll('button, .nav-option');
+
+                buttons.forEach(button => {
+                    button.addEventListener('click', e => {
+                        const x = e.clientX - button.getBoundingClientRect().left;
+                        const y = e.clientY - button.getBoundingClientRect().top;
+
+                        const ripple = document.createElement('span');
+                        ripple.style.position = 'absolute';
+                        ripple.style.width = '1px';
+                        ripple.style.height = '1px';
+                        ripple.style.borderRadius = '50%';
+                        ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                        ripple.style.transform = 'scale(0)';
+                        ripple.style.left = `${x}px`;
+                        ripple.style.top = `${y}px`;
+                        ripple.style.animation = 'ripple 0.6s linear';
+
+                        button.appendChild(ripple);
+
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+
+                const rippleKeyframes = document.createElement('style');
+                rippleKeyframes.textContent = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(100);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(rippleKeyframes);
+            };
+
+            addRippleEffect();
+
+            // Enhanced control dots animation
+            const enhanceControlDots = () => {
+                const controls = document.querySelectorAll('.control');
+
+                controls.forEach(control => {
+                    control.addEventListener('mouseenter', () => {
+                        control.style.transform = 'scale(1.2)';
+                        control.style.boxShadow = `0 0 10px ${getComputedStyle(control).backgroundColor}`;
+                    });
+
+                    control.addEventListener('mouseleave', () => {
+                        control.style.transform = '';
+                        control.style.boxShadow = '';
+                    });
+                });
+            };
+
+            enhanceControlDots();
+        });
+
+        // Cursor follow effect
+        document.addEventListener('mousemove', e => {
+            const cursor = document.createElement('div');
+            cursor.style.position = 'fixed';
+            cursor.style.width = '4px';
+            cursor.style.height = '4px';
+            cursor.style.borderRadius = '50%';
+            cursor.style.backgroundColor = 'rgba(0, 255, 213, 0.7)';
+            cursor.style.boxShadow = '0 0 5px rgba(0, 255, 213, 0.5)';
+            cursor.style.pointerEvents = 'none';
+            cursor.style.zIndex = '9999';
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursor.style.transition = 'transform 0.1s, opacity 0.5s';
+
+            document.body.appendChild(cursor);
+
+            setTimeout(() => {
+                cursor.style.transform = 'scale(2)';
+                cursor.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                cursor.remove();
+            }, 600);
+        });
+
+        // Random glitch data packets
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                const glitchPacket = document.createElement('div');
+                glitchPacket.style.position = 'fixed';
+                glitchPacket.style.width = `${Math.random() * 150 + 50}px`;
+                glitchPacket.style.height = '1px';
+                glitchPacket.style.backgroundColor = Math.random() > 0.5 ? 'rgba(0, 255, 213, 0.8)' : 'rgba(255, 0, 122, 0.8)';
+                glitchPacket.style.boxShadow = `0 0 5px ${glitchPacket.style.backgroundColor}`;
+                glitchPacket.style.left = `${Math.random() * window.innerWidth}px`;
+                glitchPacket.style.top = `${Math.random() * window.innerHeight}px`;
+                glitchPacket.style.zIndex = '5';
+                glitchPacket.style.transform = `rotate(${Math.random() * 360}deg)`;
+                glitchPacket.style.pointerEvents = 'none';
+
+                document.body.appendChild(glitchPacket);
+
+                setTimeout(() => {
+                    glitchPacket.remove();
+                }, 300);
             }
+        }, 1000);
+
+        // Error code glitch effect
+        const errorCode = document.querySelector('.error-code');
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                errorCode.style.transform = `translate(${Math.random() * 8 - 4}px, ${Math.random() * 8 - 4}px)`;
+                setTimeout(() => {
+                    errorCode.style.transform = '';
+                }, 150);
+            }
+        }, 2000);
+
+        // Enhance input field with cyber effect
+        const searchInput = document.querySelector('input');
+        if (searchInput) {
+            searchInput.addEventListener('focus', function () {
+                this.style.boxShadow = '0 0 15px rgba(0, 255, 213, 0.4), inset 0 0 10px rgba(0, 255, 213, 0.2)';
+                this.style.borderColor = 'var(--primary-color)';
+
+                // Add typing simulation
+                if (!this.dataset.hasTypingEffect) {
+                    this.dataset.hasTypingEffect = 'true';
+                    const placeholder = this.placeholder;
+                    this.placeholder = '';
+
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        if (i < placeholder.length) {
+                            this.placeholder += placeholder.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                        }
+                    }, 50);
+                }
+            });
+
+            searchInput.addEventListener('blur', function () {
+                this.style.boxShadow = '';
+                this.style.borderColor = 'rgba(0, 255, 213, 0.3)';
+            });
         }
+
+        // Add floating text fragments
+        const addTextFragments = () => {
+            const binaryDigits = ['0', '1'];
+            const fragments = ['404', 'ERROR', 'SYSTEM', 'FAILED', 'ACCESS', 'DENIED'];
+
+            setInterval(() => {
+                if (Math.random() < 0.03) {
+                    const fragment = document.createElement('div');
+                    fragment.style.position = 'fixed';
+                    fragment.style.color = 'rgba(0, 255, 213, 0.15)';
+                    fragment.style.fontFamily = 'monospace';
+                    fragment.style.fontSize = `${Math.random() * 14 + 8}px`;
+                    fragment.style.userSelect = 'none';
+                    fragment.style.pointerEvents = 'none';
+                    fragment.style.zIndex = '0';
+                    fragment.style.left = `${Math.random() * window.innerWidth}px`;
+                    fragment.style.top = `${Math.random() * window.innerHeight}px`;
+
+                    // Choose between binary or text fragment
+                    if (Math.random() < 0.7) {
+                        // Binary string
+                        let binaryString = '';
+                        for (let i = 0; i < 8; i++) {
+                            binaryString += binaryDigits[Math.floor(Math.random() * 2)];
+                        }
+                        fragment.textContent = binaryString;
+                    } else {
+                        // Text fragment
+                        fragment.textContent = fragments[Math.floor(Math.random() * fragments.length)];
+                        fragment.style.opacity = '0.2';
+                    }
+
+                    document.body.appendChild(fragment);
+
+                    // Animate and remove
+                    fragment.animate([
+                        { opacity: 0, transform: 'translateY(0)' },
+                        { opacity: 0.5, transform: 'translateY(-20px)' },
+                        { opacity: 0, transform: 'translateY(-40px)' }
+                    ], {
+                        duration: 3000,
+                        easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+                    });
+
+                    setTimeout(() => {
+                        fragment.remove();
+                    }, 3000);
+                }
+            }, 500);
+        };
+
+        addTextFragments();
         
-        function animateBinaryColumn(column) {
-            const duration = Math.random() * 15000 + 10000;
-            const startPos = parseInt(column.style.top);
-            const endPos = window.innerHeight;
-            const distance = endPos - startPos;
+        // Enhanced hover effects for navigation options
+        const navOptions = document.querySelectorAll('.nav-option');
+        navOptions.forEach(option => {
+            option.addEventListener('mouseenter', function () {
+                // Create glow effect
+                this.style.boxShadow = '0 0 15px rgba(0, 255, 213, 0.4)';
+                this.style.color = '#ffffff';
+                this.style.borderColor = 'var(--primary-color)';
+
+                // Add highlight animation
+                const highlight = document.createElement('div');
+                highlight.style.position = 'absolute';
+                highlight.style.top = '0';
+                highlight.style.left = '0';
+                highlight.style.width = '100%';
+                highlight.style.height = '100%';
+                highlight.style.background = 'radial-gradient(circle at center, rgba(0, 255, 213, 0.3) 0%, transparent 70%)';
+                highlight.style.opacity = '0';
+                highlight.style.transition = 'opacity 0.3s ease';
+                highlight.style.pointerEvents = 'none';
+
+                this.style.position = 'relative';
+                this.appendChild(highlight);
+
+                setTimeout(() => {
+                    highlight.style.opacity = '1';
+                }, 10);
+            });
+
+            option.addEventListener('mouseleave', function () {
+                this.style.boxShadow = '';
+                this.style.color = '';
+                this.style.borderColor = 'rgba(0, 255, 213, 0.3)';
+
+                const highlight = this.querySelector('div');
+                if (highlight) {
+                    highlight.style.opacity = '0';
+                    setTimeout(() => {
+                        highlight.remove();
+                    }, 300);
+                }
+            });
+
+            // Add dynamic data attribute for hover text
+            option.setAttribute('data-hover', option.textContent);
+        });
+
+        // Dynamic scanner line effect
+        const scannerLine = document.querySelector('.scanner-line');
+        document.addEventListener('mousemove', e => {
+            // Occasionally make scanner line follow cursor height
+            if (Math.random() < 0.05) {
+                scannerLine.style.animation = 'none';
+                scannerLine.style.top = `${e.clientY}px`;
+                scannerLine.style.opacity = '0.8';
+
+                setTimeout(() => {
+                    scannerLine.style.opacity = '0';
+                    setTimeout(() => {
+                        scannerLine.style.animation = 'scanDown 3s linear infinite';
+                        scannerLine.style.opacity = '';
+                    }, 500);
+                }, 300);
+            }
+        });
+
+        // Add hacker-style typing animation to heading
+        const animateHackerTitle = () => {
+            const heading = document.querySelector('h1');
+            const originalText = heading.textContent;
+            const originalDataText = heading.getAttribute('data-text');
+
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    let scrambledText = '';
+                    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{}|;:,./<>?';
+
+                    // Scramble a few characters
+                    for (let i = 0; i < originalText.length; i++) {
+                        if (Math.random() < 0.3) {
+                            scrambledText += chars[Math.floor(Math.random() * chars.length)];
+                        } else {
+                            scrambledText += originalText[i];
+                        }
+                    }
+
+                    heading.textContent = scrambledText;
+                    heading.setAttribute('data-text', scrambledText);
+
+                    // Restore after a short delay
+                    setTimeout(() => {
+                        heading.textContent = originalText;
+                        heading.setAttribute('data-text', originalDataText);
+                    }, 200);
+                }
+            }, 2000);
+        };
+
+        animateHackerTitle();
+
+        // Enhance terminal controls (dots)
+        const controls = document.querySelectorAll('.control');
+        controls.forEach(control => {
+            // Add pulse effect
+            control.style.animation = `${control.classList.contains('red') ? 'redPulse' :
+                control.classList.contains('yellow') ? 'yellowPulse' :
+                    'greenPulse'} 3s infinite alternate ease-in-out, 
+                                       controlFloat 3s infinite ${Math.random() * 2}s ease-in-out`;
+        });
+
+        // Add pulse animations for controls
+        const controlAnimations = document.createElement('style');
+        controlAnimations.textContent = `
+            @keyframes redPulse {
+                0%, 100% { box-shadow: 0 0 5px rgba(255, 59, 48, 0.5); }
+                50% { box-shadow: 0 0 10px rgba(255, 59, 48, 0.8); }
+            }
             
-            let startTime = null;
+            @keyframes yellowPulse {
+                0%, 100% { box-shadow: 0 0 5px rgba(255, 204, 0, 0.5); }
+                50% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); }
+            }
             
-            function step(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const progress = (timestamp - startTime) / duration;
+            @keyframes greenPulse {
+                0%, 100% { box-shadow: 0 0 5px rgba(52, 199, 89, 0.5); }
+                50% { box-shadow: 0 0 10px rgba(52, 199, 89, 0.8); }
+            }
+        `;
+        document.head.appendChild(controlAnimations);
+
+        // Create digital rain effect
+        (function createDigitalRain() {
+            const digitalRain = document.getElementById('digitalRain');
+            if (!digitalRain) return;
+
+            // Clear existing content
+            digitalRain.innerHTML = '';
+
+            const binaryChars = '10';
+            const columns = Math.floor(window.innerWidth / 20);
+
+            // Create initial columns
+            for (let i = 0; i < columns; i++) {
+                createRainColumn();
+            }
+
+            function createRainColumn() {
+                const column = document.createElement('div');
+                column.className = 'rain-column';
+                column.style.left = `${Math.random() * window.innerWidth}px`;
+                column.style.animationDuration = `${Math.random() * 10 + 10}s`;
+
+                let columnContent = '';
+                const columnLength = Math.floor(Math.random() * 20 + 10);
+
+                for (let j = 0; j < columnLength; j++) {
+                    columnContent += binaryChars.charAt(Math.floor(Math.random() * binaryChars.length)) + '<br>';
+                }
+
+                column.innerHTML = columnContent;
+                digitalRain.appendChild(column);
+
+                // When animation ends, remove the column and create a new one
+                column.addEventListener('animationend', () => {
+                    column.remove();
+                    createRainColumn();
+                });
+            }
+        })();
+
+        // Data Processing Animation Fix
+        (function createTypingAnimation() {
+            const dataProcessing = document.querySelector('.data-processing');
+            if (!dataProcessing) return;
+
+            // Get all data lines
+            const dataLines = document.querySelectorAll('.data-line');
+
+            // Remove existing animation
+            dataLines.forEach(line => {
+                line.style.animation = 'none';
+                line.style.width = 'auto';
+                line.style.overflow = 'hidden';
+                line.style.whiteSpace = 'nowrap';
+                line.style.marginBottom = '5px';
+                line.dataset.originalText = line.textContent;
+                line.textContent = '';
+            });
+
+            // Create animated typing effect with continuous loop
+            function startAnimations() {
+                dataLines.forEach((line, index) => {
+                    const originalText = line.dataset.originalText;
+                    setTimeout(() => {
+                        animateLine(line, originalText, index);
+                    }, index * 800);
+                });
+            }
+
+            function animateLine(line, text, index) {
+                let charIndex = 0;
+                line.textContent = '';
+
+                const typeInterval = setInterval(() => {
+                    if (charIndex < text.length) {
+                        line.textContent += text.charAt(charIndex);
+                        charIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+
+                        // After full text is shown, wait and reset for loop
+                        setTimeout(() => {
+                            // Clear and restart this line
+                            line.textContent = '';
+                            animateLine(line, text, index);
+                        }, 3000 + (index * 500)); // Different delay for each line to avoid simultaneous resets
+                    }
+                }, 50 + Math.random() * 30); // Slightly random typing speed
+            }
+
+            // Start the animations
+            startAnimations();
+        })();
+
+        // Network animation
+        document.addEventListener('DOMContentLoaded', function () {
+            const portalContainer = document.querySelector('.body');
+            if (!portalContainer) return;
+
+            // Only create this canvas if it doesn't conflict with neuralNetwork
+            if (!document.getElementById('neuralNetwork')) {
+                const canvas = document.createElement('canvas');
+                Object.assign(canvas.style, {
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
+                    zIndex: '0',
+                    opacity: '0.4',
+                    borderRadius: '12px'
+                });
+                canvas.className = 'network-canvas';
+                portalContainer.style.position = 'relative';
+                portalContainer.insertBefore(canvas, portalContainer.firstChild);
+
+                const ctx = canvas.getContext('2d');
+
+                function resizeCanvas() {
+                    canvas.width = portalContainer.offsetWidth;
+                    canvas.height = portalContainer.offsetHeight;
+                }
+
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                const color = '#1e90ff';
+
+                class Node {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.vx = (Math.random() - 0.5) * 1.2;
+                        this.vy = (Math.random() - 0.5) * 1.2;
+                        this.radius = Math.random() * 1.2 + 0.8;
+                    }
+
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                    }
+
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = color;
+                        ctx.fill();
+                    }
+                }
+
+                const nodes = [];
+                const density = 10000; // Lower = more nodes
+                const nodeCount = Math.floor(canvas.width * canvas.height / density);
+
+                for (let i = 0; i < nodeCount; i++) {
+                    nodes.push(new Node());
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    nodes.forEach(node => {
+                        node.update();
+                        node.draw();
+                    });
+
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x;
+                            const dy = nodes[i].y - nodes[j].y;
+                            const distanceSq = dx * dx + dy * dy;
+                            const maxDistSq = 90 * 90;
+
+                            if (distanceSq < maxDistSq) {
+                                const opacity = 1 - distanceSq / maxDistSq;
+                                ctx.beginPath();
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
+                                ctx.lineWidth = 0.6;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                animate();
+            }
+        });
+        
+        // Scanner component animation
+        (function() {
+            // Get elements by ID
+            var scanText = document.getElementById('simple-scan-text');
+            var progressBar = document.getElementById('simple-progress-bar');
+            
+            // Messages array
+            var messages = [
+                'Scanning system directories...',
+                'Searching cache memory...',
+                'Checking network paths...',
+                'Analyzing request parameters...',
+                'Validating URL structure...',
+                'Querying database records...'
+            ];
+            
+            var index = 0;
+            
+            // Function to update text
+            function updateText() {
+                if (scanText) {
+                    scanText.innerText = messages[index];
+                    index = (index + 1) % messages.length;
+                }
+            }
+            
+            // Start the animation
+            if (progressBar) {
+                progressBar.style.width = '100%';
+            }
+            
+            // Set interval for text rotation
+            setInterval(updateText, 2000);
+        })();
+    </script>
+    <!-- Add this right after your <body class="body"> line -->
+<script>
+    // Make sure neural network animation works
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const canvas = document.getElementById('neuralNetwork');
+            if (canvas && canvas.getContext) {
+                const ctx = canvas.getContext('2d');
                 
-                if (progress < 1) {
-                    column.style.top = (startPos + distance * progress) + 'px';
-                    requestAnimationFrame(step);
-                } else {
-                    // Reset and restart animation
-                    column.style.top = -1000 + Math.random() * 1000 + 'px';
+                // Reset canvas dimensions
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                // Animation variables
+                const nodes = [];
+                const numNodes = Math.min(80, Math.floor(window.innerWidth / 50));
+                const connectionDistance = Math.min(200, window.innerWidth / 4);
+                
+                // Create nodes
+                for (let i = 0; i < numNodes; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 2 + 1,
+                        vx: Math.random() * 0.5 - 0.25,
+                        vy: Math.random() * 0.5 - 0.25,
+                        pulseOpacity: 0,
+                        pulseDirection: 1
+                    });
+                }
+                
+                // Animation function
+                function animate() {
+                    // Clear canvas
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
                     
-                    // Regenerate binary
-                    let binaryString = '';
-                    const length = Math.floor(Math.random() * 20) + 10;
-                    
-                    for (let j = 0; j < length; j++) {
-                        binaryString += Math.random() > 0.5 ? '1' : '0';
-                        if (j < length - 1) binaryString += '<br>';
+                    // Draw connections and nodes
+                    for (let i = 0; i < nodes.length; i++) {
+                        const node = nodes[i];
+                        
+                        // Update node position
+                        node.x += node.vx;
+                        node.y += node.vy;
+                        
+                        // Boundary checking
+                        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                        
+                        // Update pulse opacity
+                        node.pulseOpacity += 0.01 * node.pulseDirection;
+                        if (node.pulseOpacity >= 1 || node.pulseOpacity <= 0) {
+                            node.pulseDirection *= -1;
+                        }
+                        
+                        // Draw connections
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const otherNode = nodes[j];
+                            const dx = node.x - otherNode.x;
+                            const dy = node.y - otherNode.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            
+                            if (distance < connectionDistance) {
+                                const opacity = (1 - distance / connectionDistance) * 0.4;
+                                ctx.beginPath();
+                                ctx.moveTo(node.x, node.y);
+                                ctx.lineTo(otherNode.x, otherNode.y);
+                                ctx.strokeStyle = `rgba(0, 255, 213, ${opacity})`;
+                                ctx.lineWidth = 0.5;
+                                ctx.stroke();
+                            }
+                        }
+                        
+                        // Draw node
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(0, 255, 213, ${0.3 + node.pulseOpacity * 0.3})`;
+                        ctx.fill();
                     }
                     
-                    column.innerHTML = binaryString;
-                    
-                    // Start animation again
-                    animateBinaryColumn(column);
+                    requestAnimationFrame(animate);
                 }
+                
+                // Start animation
+                animate();
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
             }
-            
-            requestAnimationFrame(step);
-        }
-        
-        // Initialize binary rain
-        createBinaryRain();
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const rainContainer = document.getElementById('binaryRain');
-            rainContainer.innerHTML = '';
-            createBinaryRain();
-        });
+        }, 500); // Small delay to ensure DOM is ready
+    });
     </script>
 </body>
+
 </html>

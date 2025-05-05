@@ -746,7 +746,7 @@
         }
 
         /* Data Processing Animation */
-        .data-processing {
+        /* .data-processing {
             position: fixed;
             right: 30px;
             bottom: 100px;
@@ -764,7 +764,35 @@
             white-space: nowrap;
             overflow: hidden;
             animation: typingEffect 3s steps(40, end) infinite;
+        } */
+
+          /* Data Processing Animation - Fixed */
+          .data-processing {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary-color);
+            pointer-events: none;
+            text-align: right;
+            opacity: 0.7;
+            z-index: 1000;
+            background-color: rgba(7, 21, 33, 0.7);
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 2px solid var(--primary-color);
+            max-width: 300px;
         }
+
+        .data-line {
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            animation: typingEffect 3s steps(40, end) infinite;
+        }
+
 
         /* Scanner Effect */
         .scan-effect {

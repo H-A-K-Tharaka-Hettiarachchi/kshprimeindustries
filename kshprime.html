@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSHPRIME INDUSTRIES | Corporate Nexus</title>
+
+    <meta name="author" content="KSHPRIME INDUSTRIES">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KSHPRIME INDUSTRIES | Innovative Industrial Solutions">
+    <meta property="og:description"
+        content="Explore next-gen industrial solutions by KSHPRIME INDUSTRIES. Discover smart manufacturing, automation, and tech-driven innovations.">
+    <meta property="og:image" content="https://kshprimeindustries.com/img/preview.png">
+    <meta property="og:url" content="https://kshprimeindustries.com">
+    <meta property="og:site_name" content="KSHPRIME INDUSTRIES">
+    <meta name="msvalidate.01" content="CFCF7D2432D340F8E9263B71AE5B9A6E" />
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" href="icons/icon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 213, 0.4);
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .fab:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 255, 213, 0.6);
+            background-color: var(--secondary-color);
+        }
+
+        .fab i {
+            color: var(--background-darker);
+            font-size: 24px;
+        }
+
+        .fab::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            animation: pulse 2s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            70% {
+                transform: scale(1.1);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .fab-tooltip {
+            position: absolute;
+            right: 75px;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--primary-color);
+        }
+
+        .fab:hover .fab-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile navigation fixes */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--background-dark);
+                flex-direction: column;
+                padding: 20px;
+                border-bottom: 1px solid var(--primary-color);
+                z-index: 100;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 22px;
+                cursor: pointer;
+                z-index: 101;
+            }
+
+            .mobile-menu-btn span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: var(--primary-color);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+            }
+
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+            }
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            background-color: rgba(7, 21, 33, 0.7);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .empty-state:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            animation: scanLine 2s linear infinite;
+        }
+
+        .status-icon {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            opacity: 0.7;
+            animation: pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+
+        .status-dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .loading-bar {
+            width: 80%;
+            max-width: 400px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 25px auto;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+            position: relative;
+            animation: loadingProgress 3s ease-in-out infinite alternate;
+        }
+
+        .progress-fill:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: loadingShine 1.5s linear infinite;
+        }
+
+        .empty-state p {
+            max-width: 500px;
+            margin: 0 auto 30px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: rgba(0, 255, 213, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 4px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            animation: flickerText 5s infinite;
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes loadingProgress {
+            0% {
+                width: 10%;
+            }
+
+            100% {
+                width: 70%;
+            }
+        }
+
+        @keyframes loadingShine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes scanLine {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes flickerText {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            92% {
+                opacity: 1;
+            }
+
+            94% {
+                opacity: 0.8;
+            }
+
+            96% {
+                opacity: 1;
+            }
+
+            98% {
+                opacity: 0.5;
+            }
+
+            99% {
+                opacity: 1;
+            }
+        }
+
+
+
+        /* Holographic 3D Card Effect for Terminal Windows */
+        .terminal-window {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            overflow: visible !important;
+        }
+
+        .terminal-window:hover {
+            transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+        }
+
+    
+
+        .terminal-window:hover::before {
+            opacity: 0.5;
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 300% 0%;
+            }
+        }
+
+        /* Digital Rain Effect (Matrix-style) */
+        .digital-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.07;
+        }
+
+        .rain-column {
+            position: absolute;
+            top: -100px;
+            font-family: monospace;
+            color: var(--primary-color);
+            font-size: 14px;
+            line-height: 1;
+            text-shadow: 0 0 5px var(--primary-color);
+            white-space: nowrap;
+            animation-name: digitalRain;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes digitalRain {
+            0% {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(calc(100vh + 100px));
+                opacity: 0;
+            }
+        }
+
+        /* HUD Overlay Elements */
+        .hud-corner {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.7;
+        }
+
+        .hud-top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .hud-top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .hud-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .hud-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            border-right: 2px solid var(--primary-color);
+        }
+
+        .hud-scanner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 255, 213, 0.5) 50%,
+                    transparent 100%);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 999;
+            animation: scanScreen 4s linear infinite;
+        }
+
+        @keyframes scanScreen {
+            0% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Cybernetic Eye Tracking Cursor */
+        .cyber-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            opacity: 0.6;
+        }
+
+        .cyber-cursor::before,
+        .cyber-cursor::after {
+            content: '';
+            position: absolute;
+            background-color: var(--primary-color);
+        }
+
+        .cyber-cursor::before {
+            top: 50%;
+            left: -5px;
+            right: -5px;
+            height: 1px;
+            transform: translateY(-50%);
+        }
+
+        .cyber-cursor::after {
+            left: 50%;
+            top: -5px;
+            bottom: -5px;
+            width: 1px;
+            transform: translateX(-50%);
+        }
+
+        .cyber-cursor .pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            animation: cursorPulse 2s ease-out infinite;
+        }
+
+        @keyframes cursorPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 213, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 255, 213, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 213, 0);
+            }
+        }
+
+        /* 3D Parallax Effect */
+        .parallax-container {
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Neural Network Background Animation */
+        .neural-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Glowing Text Effect for Headings */
+        h1,
+        h2,
+        h3 {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after,
+        h2::after,
+        h3::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: transparent;
+            z-index: -1;
+            filter: blur(8px);
+            opacity: 0.7;
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                opacity: 0.3;
+                filter: blur(8px);
+            }
+
+            100% {
+                opacity: 0.7;
+                filter: blur(12px);
+            }
+        }
+
+        /* Interactive Circuit Board Pattern */
+        .circuit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 L90 10 L90 90 L10 90 Z' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 10 L30 30 L10 30' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M70 10 L70 30 L90 30' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M30 90 L30 70 L10 70' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3Cpath d='M70 90 L70 70 L90 70' fill='none' stroke='rgba(0, 255, 213, 0.1)' stroke-width='0.5'/%3E%3C/svg%3E");
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Animated Tech Background Grid */
+        .tech-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(0, 255, 213, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 213, 0.05) 1px, transparent 1px);
+            z-index: -2;
+            opacity: 0.3;
+            animation: gridPulse 4s infinite alternate;
+        }
+
+        @keyframes gridPulse {
+            0% {
+                opacity: 0.2;
+                background-size: 50px 50px;
+            }
+
+            100% {
+                opacity: 0.4;
+                background-size: 51px 51px;
+            }
+        }
+
+        /* Data Processing Animation */
+        /* .data-processing {
+            position: fixed;
+            right: 30px;
+            bottom: 100px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary-color);
+            pointer-events: none;
+            text-align: right;
+            opacity: 0.7;
+            z-index: 1000;
+        }
+
+        .data-line {
+            margin: 2px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typingEffect 3s steps(40, end) infinite;
+        } */
+
+           /* Data Processing Animation - Fixed */
+           .data-processing {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary-color);
+            pointer-events: none;
+            text-align: right;
+            opacity: 0.7;
+            z-index: 1000;
+            background-color: rgba(7, 21, 33, 0.7);
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 2px solid var(--primary-color);
+            max-width: 300px;
+        }
+
+        .data-line {
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            animation: typingEffect 3s steps(40, end) infinite;
+        }
+
+        @keyframes typingEffect {
+            from {
+                width: 0;
+            }
+
+            50% {
+                width: 100%;
+            }
+
+            to {
+                width: 0;
+            }
+        }
+
+        /* Scanner Effect */
+        .scan-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999;
+            pointer-events: none;
+            animation: scanEffect 10s linear infinite;
+            opacity: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 255, 213, 0) 0%,
+                    rgba(0, 255, 213, 0.1) 50%,
+                    rgba(0, 255, 213, 0) 100%);
+        }
+
+        @keyframes scanEffect {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+
+            10%,
+            90% {
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(100%);
+            }
+        }
+
+        /* Electric Connection Lines */
+        .electric-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(0, 255, 213, 0.8),
+                    transparent);
+            animation: electricPulse 3s ease-in-out infinite;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        @keyframes electricPulse {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Holographic Stats Effect */
+        .stat-box {
+            overflow: visible !important;
+        }
+
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg,
+                    rgba(0, 255, 213, 0) 0%,
+                    rgba(0, 255, 213, 0.1) 50%,
+                    rgba(0, 255, 213, 0) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 6px;
+            filter: blur(8px);
+            animation: rotateHolo 5s linear infinite;
+        }
+
+        .stat-box:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes rotateHolo {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 200% 0%;
+            }
+        }
+
+        /* Futuristic Button Glow */
+        .submit-btn {
+            position: relative;
+            overflow: visible !important;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--primary-color);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            filter: blur(10px);
+        }
+
+        .submit-btn:hover::before {
+            opacity: 0.5;
+        }
+
+        /* Holographic Flicker Text */
+        @keyframes hologramFlicker {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            8% {
+                opacity: 0.8;
+                transform: scale(0.98);
+            }
+
+            12% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+
+            62% {
+                opacity: 0.7;
+                transform: scale(0.99);
+            }
+
+            70% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .section-title {
+            animation: hologramFlicker 5s infinite;
+        }
+
+        /* Dramatic Hacking Animation for Terminal Content */
+        .command-line .command {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: hackingType 3s steps(30, end) 1;
+        }
+
+        @keyframes hackingType {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Future-style Loading Indicator */
+        .loading-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .loading-circle {
+            width: 100%;
+            height: 100%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spinLoading 1s linear infinite;
+        }
+
+        .loading-circle::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2px solid transparent;
+            border-top-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: spinLoading 2s linear infinite reverse;
+        }
+
+        @keyframes spinLoading {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- Add this to your existing style section -->
+    <style>
+        /* General animation keyframes */
+        @keyframes glitchEffect {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes dataStream {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 0% 100%;
+            }
+        }
+
+        @keyframes floatEffect {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-10deg) scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: rotate(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFromBottom {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFromLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFromRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Hero section animations */
+        .hero .terminal-window {
+            animation: scaleIn 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            position: relative;
+        }
+ /*
+        .hero .terminal-window::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--primary-color);
+            opacity: 0;
+            animation: pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+            animation-delay: 1s;
+        }
+*/
+        .terminal-controls .control {
+            animation: floatEffect 3s ease-in-out infinite;
+        }
+
+        .terminal-controls .control:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .terminal-controls .control:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .terminal-controls .control:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .command-line {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .command-line::after {
+            content: '|';
+            position: absolute;
+            right: -4px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            from,
+            to {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .terminal-content h1 {
+            animation: glitchEffect 0.5s ease-in-out;
+            animation-delay: 0.5s;
+        }
+
+        .terminal-content p {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 1s;
+        }
+
+        .status-line {
+            opacity: 0;
+            animation: slideFromBottom 0.8s forwards;
+            animation-delay: 1.5s;
+        }
+
+        .status-active {
+            position: relative;
+        }
+
+        .status-active::after {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            margin-left: 8px;
+            animation: blink 1.5s infinite;
+        } 
+
+        /* About section animations */
+        .about {
+            perspective: 1000px;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            animation: lineExpand 1s forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes lineExpand {
+            to {
+                width: 100%;
+            }
+        }
+
+        .about .terminal-window {
+            transform-style: preserve-3d;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .about .terminal-window.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            flex: 1;
+            min-width: 120px;
+            background-color: rgba(7, 21, 33, 0.7);
+            border: 1px solid var(--primary-color);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 4px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .stat-box.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-box:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .stat-box:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+
+        .stat-box:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
+        .stat-box:nth-child(4) {
+            transition-delay: 0.7s;
+        }
+
+        .stat-title {
+            color: var(--muted-color);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+        }
+
+        /* Research section animations */
+        .research-progress {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .research-progress.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .research-item {
+            margin-bottom: 25px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .research-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .research-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .research-item:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+
+        .research-item:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
+        .research-item:nth-child(4) {
+            transition-delay: 0.7s;
+        }
+
+        .research-name {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .research-name::before {
+            content: '>';
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .progress-bar {
+            position: relative;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            position: relative;
+            width: 0;
+        }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        .progress-value {
+            text-align: right;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        /* Contact section animations */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-column:first-child {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .contact-column:first-child.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-column:last-child {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .contact-column:last-child.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .contact-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-item:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        .contact-item:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .contact-item:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .contact-label {
+            color: var(--muted-color);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .form-group.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-group:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        .form-group:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .form-group:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .submit-btn {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition-delay: 0.8s;
+        }
+
+        .submit-btn.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer animations */
+        footer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .footer-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .footer-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-logo {
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-logo::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+
+        /* Noise overlay enhancement */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+            animation: noiseAnimation 0.5s infinite;
+        }
+
+        @keyframes noiseAnimation {
+            0% {
+                opacity: 0.05;
+            }
+
+            50% {
+                opacity: 0.06;
+            }
+
+            100% {
+                opacity: 0.05;
+            }
+        }
+
+        /* Data stream effect across page */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    transparent 0%,
+                    rgba(0, 255, 213, 0.03) 50%,
+                    transparent 100%);
+            background-size: 100% 200%;
+            animation: dataStream 10s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Glitch effect for section titles */
+        .section-title {
+            position: relative;
+        }
+
+        .section-title::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: var(--primary-color);
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitchText 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitchText {
+            0% {
+                clip: rect(0, 900px, 0, 0);
+            }
+
+            4% {
+                clip: rect(0, 900px, 20px, 0);
+            }
+
+            8% {
+                clip: rect(0, 900px, 0, 0);
+            }
+
+            12% {
+                clip: rect(0, 900px, 10px, 0);
+            }
+
+            16% {
+                clip: rect(0, 900px, 0, 0);
+            }
+
+            20% {
+                clip: rect(0, 900px, 0, 0);
+            }
+
+            100% {
+                clip: rect(0, 900px, 0, 0);
+            }
+        }
+        @media (max-width: 768px) {
+            .data-processing {
+                display: none;
+            }
+            .hud-corner{
+                display: none;
+            }
+            .loading-indicator{
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="corporate">
+    <div class="noise-overlay"></div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-text">KSHPRIME</div>
+                <div class="logo-subtext">INDUSTRIES</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#subsidiaries">SUBSIDIARIES</a></li>
+                    <li><a href="#research">RESEARCH</a></li>
+                    <li><a href="partners.html">PARTNERS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <li><a href="index.html">PORTAL</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                        <span class="terminal-title">kshprime_overview.sh</span>
+                    </div>
+                </div>
+                <div class="terminal-content">
+                    <div class="command-line">$ <span class="command">initialize_corporate_presentation</span></div>
+                    <h1 class="glitch" data-text="KSHPRIME INDUSTRIES">KSHPRIME INDUSTRIES</h1>
+                    <p class="typewriter">Pioneering the technological frontier across multiple industries.</p>
+                    <div class="status-line">STATUS: <span class="status-active">OPERATIONAL</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">CORPORATE PROFILE</h2>
+            <div class="terminal-window">
+                <div class="terminal-content">
+                    <div class="command-line">$ <span class="command">display_corporate_structure</span></div>
+                    <p>KSHPRIME INDUSTRIES stands at the nexus of technological innovation, operating as a parent
+                        conglomerate across multiple high-tech sectors. Founded on principles of advanced research and
+                        development, we integrate cutting-edge technologies to solve tomorrow's challenges today.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-title">FOUNDED</div>
+                            <div class="stat-value">2025</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-title">HEADQUARTERS</div>
+                            <div class="stat-value">NEO-COLOMBO</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-title">SUBSIDIARIES</div>
+                            <div class="stat-value">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-title">R&D FACILITIES</div>
+                            <div class="stat-value">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="subsidiaries" class="subsidiaries">
+        <div class="container">
+            <h2 class="section-title">SUBSIDIARY NETWORK</h2>
+            <div class="subsidiary-grid">
+                <!-- <div class="subsidiary-card">
+                    <div class="card-header">
+                        <h3>KSH SOFTWORKS</h3>
+                        <div class="sector">SOFTWARE DIVISION</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Advanced software solutions for enterprise, security, and consumer applications. Specializing in AI-driven systems and secure infrastructure.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="status">STATUS: <span class="active">ACTIVE</span></div>
+                    </div>
+                </div>
+
+                <div class="subsidiary-card">
+                    <div class="card-header">
+                        <h3>KSHTECH HARDWARE</h3>
+                        <div class="sector">HARDWARE DIVISION</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Next-generation computing hardware, quantum processors, and advanced networking equipment. Pushing boundaries of computational capability.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="status">STATUS: <span class="active">ACTIVE</span></div>
+                    </div>
+                </div>
+
+                <div class="subsidiary-card">
+                    <div class="card-header">
+                        <h3>NEXUS LABORATORIES</h3>
+                        <div class="sector">RESEARCH DIVISION</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Cutting-edge research in quantum computing, materials science, and biotechnology. Focused on breakthroughs that reshape industries.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="status">STATUS: <span class="active">ACTIVE</span></div>
+                    </div>
+                </div>
+
+                <div class="subsidiary-card">
+                    <div class="card-header">
+                        <h3>SECURENET SYSTEMS</h3>
+                        <div class="sector">SECURITY DIVISION</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Advanced cybersecurity solutions and infrastructure protection. Defending the digital frontiers with proprietary technologies.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="status">STATUS: <span class="active">ACTIVE</span></div>
+                    </div>
+                </div> -->
+
+                <div class="subsidiary-grid">
+                    <div class="empty-state">
+                        <div class="status-icon">
+                            <div class="pulse-ring"></div>
+                            <div class="status-dot"></div>
+                        </div>
+                        <h3>SUBSIDIARY NETWORK INITIALIZING</h3>
+                        <div class="loading-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p>Corporate expansion protocol in preliminary phase. Subsidiary entities currently in
+                            development.</p>
+                        <div class="status-tag">COMING SOON</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="research">
+        <div class="container">
+            <h2 class="section-title">RESEARCH INITIATIVES</h2>
+            <div class="terminal-window">
+                <div class="terminal-content">
+                    <div class="command-line">$ <span class="command">display_research_priorities</span></div>
+
+                    <div class="research-progress">
+                        <div class="research-item">
+                            <div class="research-name">Quantum Computing Architecture</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 78%"></div>
+                            </div>
+                            <div class="progress-value">78%</div>
+                        </div>
+
+                        <div class="research-item">
+                            <div class="research-name">Neural Interface Systems</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 62%"></div>
+                            </div>
+                            <div class="progress-value">62%</div>
+                        </div>
+
+                        <div class="research-item">
+                            <div class="research-name">Advanced Materials Science</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 91%"></div>
+                            </div>
+                            <div class="progress-value">91%</div>
+                        </div>
+
+                        <div class="research-item">
+                            <div class="research-name">Autonomous Systems</div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 84%"></div>
+                            </div>
+                            <div class="progress-value">84%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">SECURE COMMUNICATIONS</h2>
+            <div class="terminal-window">
+                <div class="terminal-content">
+                    <div class="command-line">$ <span class="command">initialize_comm_channel</span></div>
+
+                    <div class="contact-grid">
+                        <div class="contact-column">
+                            <div class="contact-item">
+                                <div class="contact-label">HEADQUARTERS</div>
+                                <div class="contact-value">Neo-Colombo Tech District, Block 7</div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-label">SECURE LINE</div>
+                                <div class="contact-value">+94 11 2345678</div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-label">ENCRYPTION KEY</div>
+                                <div class="contact-value">contact@kshprime.com</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-column">
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <label for="name">IDENTIFIER</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">COMMUNICATION CHANNEL</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">MESSAGE PAYLOAD</label>
+                                    <textarea id="message" name="message" required></textarea>
+                                </div>
+
+                                <button type="submit" class="submit-btn">TRANSMIT</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">KSHPRIME INDUSTRIES</div>
+                <div class="footer-links">
+                    <a href="#about">ABOUT</a>
+                    <a href="#subsidiaries">SUBSIDIARIES</a>
+                    <a href="#research">RESEARCH</a>
+                    <a href="partners.html">PARTNERS</a>
+                    <a href="#contact">CONTACT</a>
+                    <a href="index.html">PORTAL</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 KSHPRIME INDUSTRIES. ALL RIGHTS SECURED.
+                </div>
+                <div class="footer-note">AUTHORIZED ACCESS ONLY</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button for Chat -->
+    <a href="chat.html" class="fab">
+        <i>💬</i>
+        <span class="fab-tooltip">SECURE CHAT</span>
+    </a>
+    <div class="digital-rain-container" id="digitalRain"></div>
+    <div class="hud-corner hud-top-left"></div>
+    <div class="hud-corner hud-top-right"></div>
+    <div class="hud-corner hud-bottom-left"></div>
+    <div class="hud-corner hud-bottom-right"></div>
+    <div class="hud-scanner"></div>
+    <!-- <div class="cyber-cursor">
+        <div class="pulse"></div>
+    </div> -->
+    <div class="circuit-overlay"></div>
+    <div class="tech-grid"></div>
+    <div class="scan-effect"></div>
+    <div class="loading-indicator">
+        <div class="loading-circle"></div>
+    </div>
+    <div class="data-processing">
+        <div class="data-line">Initializing kshprime_sys.exe...</div>
+        <div class="data-line">Scanning for intrusions...</div>
+        <div class="data-line">Security protocols active...</div>
+        <div class="data-line">Network status: online</div>
+    </div>
+
+  
+    <script>document.addEventListener('DOMContentLoaded', function () {
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function () {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('show');
+            });
+        }
+    
+        // Close menu when clicking on a link (for mobile)
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('show');
+                    mobileMenuBtn.classList.remove('active');
+                }
+            });
+        });
+    
+        // Apply data-text attribute to all headings for glow effect
+        document.querySelectorAll('h1, h2, h3').forEach(heading => {
+            heading.setAttribute('data-text', heading.textContent);
+        });
+    
+        // Add data-text attribute to section titles for glitch effect
+        document.querySelectorAll('.section-title').forEach(title => {
+            title.setAttribute('data-text', title.textContent);
+        });
+    
+        // Animate elements on scroll
+        window.addEventListener('scroll', function () {
+            animateElementsInView();
+        });
+    
+        // Initial animations
+        animateElementsInView();
+        createElectricConnectionLines();
+        createParallaxEffect();
+        createInteractiveCursor();
+        createTerminalControlsAnimation();
+        createNetworkVisualization();
+    });
+    
+    function animateElementsInView() {
+        // Apply animation to elements when they come into view
+        const elements = [
+            ...document.querySelectorAll('.stat-box, .research-item, .contact-column, .contact-item, .form-group, .submit-btn, .footer-content, .about .terminal-window, .research-progress')
+        ];
+    
+        elements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('animate');
+            }
+        });
+    
+        // Apply animation to progress bars
+        const progressBars = document.querySelectorAll('.progress');
+        progressBars.forEach(bar => {
+            if (isElementInViewport(bar) && !bar.classList.contains('animated')) {
+                bar.classList.add('animated');
+                let targetWidth = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 100);
+            }
+        });
+    }
+    
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
+            rect.bottom >= 0
+        );
+    }
+    
+    function createElectricConnectionLines() {
+        const sections = document.querySelectorAll('section');
+    
+        sections.forEach((section, index) => {
+            if (index < sections.length - 1) {
+                const line = document.createElement('div');
+                line.className = 'electric-line';
+                line.style.top = `${section.offsetTop + section.offsetHeight + 30}px`;
+                line.style.width = '80%';
+                line.style.left = '10%';
+                document.body.appendChild(line);
+            }
+        });
+    }
+    
+    function createParallaxEffect() {
+        document.querySelectorAll('.parallax-container').forEach(container => {
+            const layers = container.querySelectorAll('.parallax-layer');
+    
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.clientX) / 30;
+                const y = (window.innerHeight / 2 - e.clientY) / 30;
+    
+                layers.forEach((layer, index) => {
+                    const speed = index / layers.length * 2;
+                    layer.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+                });
+            });
+        });
+    }
+    
+    function createInteractiveCursor() {
+        const cursor = document.querySelector('.cyber-cursor');
+    
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+    
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        });
+    
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+    }
+    
+    function createTerminalControlsAnimation() {
+        document.querySelectorAll('.terminal-controls .control').forEach((control, index) => {
+            control.style.animation = `floatEffect ${2 + index * 0.5}s ease-in-out infinite`;
+        });
+    }
+    
+    function createNetworkVisualization() {
+        const hero = document.querySelector('.hero');
+        const networkCanvas = document.createElement('canvas');
+        networkCanvas.classList.add('network-canvas');
+        networkCanvas.style.position = 'absolute';
+        networkCanvas.style.top = '0';
+        networkCanvas.style.left = '0';
+        networkCanvas.style.width = '100%';
+        networkCanvas.style.height = '100%';
+        networkCanvas.style.zIndex = '-1';
+        networkCanvas.style.opacity = '0.2';
+        hero.style.position = 'relative';
+        hero.insertBefore(networkCanvas, hero.firstChild);
+    
+        const ctx = networkCanvas.getContext('2d');
+    
+        function setCanvasSize() {
+            networkCanvas.width = hero.offsetWidth;
+            networkCanvas.height = hero.offsetHeight;
+        }
+    
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+    
+        class Node {
+            constructor() {
+                this.x = Math.random()
+            }
+        }
+    }
+
+
+    
+document.addEventListener('DOMContentLoaded', function () {
+    const portalContainer = document.querySelector('.corporate');
+    if (!portalContainer) return;
+
+    const canvas = document.createElement('canvas');
+    Object.assign(canvas.style, {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        zIndex: '0',
+        opacity: '0.4',
+        borderRadius: '12px'
+    });
+    canvas.className = 'network-canvas';
+    portalContainer.style.position = 'relative';
+    portalContainer.insertBefore(canvas, portalContainer.firstChild);
+
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = portalContainer.offsetWidth;
+        canvas.height = portalContainer.offsetHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const color = '#1e90ff';
+
+    class Node {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 1.2;
+            this.vy = (Math.random() - 0.5) * 1.2;
+            this.radius = Math.random() * 1.2 + 0.8;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+    }
+
+    const nodes = [];
+    const density = 10000; // Lower = more nodes
+    const nodeCount = Math.floor(canvas.width * canvas.height / density); // ~double previous nodes
+
+    for (let i = 0; i < nodeCount; i++) {
+        nodes.push(new Node());
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        nodes.forEach(node => {
+            node.update();
+            node.draw();
+        });
+
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const distanceSq = dx * dx + dy * dy;
+                const maxDistSq = 90 * 90;
+
+                if (distanceSq < maxDistSq) {
+                    const opacity = 1 - distanceSq / maxDistSq;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.strokeStyle = `rgba(30,144,255,${opacity * 0.5})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    animate();
+});
+
+
+    </script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -6,11 +6,22 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
 <url>
   <loc>https://kshprimeindustries.com/</loc>
   <lastmod>2025-05-06T20:07:12+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
 
+<url>
+  <loc>https://kshprimeindustries.com/personal</loc>
+  <lastmod>2025-05-06T20:07:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://kshprimeindustries.com/education</loc>
+  <lastmod>2025-05-06T20:07:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>

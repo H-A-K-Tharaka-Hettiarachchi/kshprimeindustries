@@ -7,14 +7,15 @@
     <title>Kshithija Tharaka | Software Engineer | Entrepreneur</title>
 
     <meta name="author" content="KSHPRIME INDUSTRIES">
-    <meta name="description" content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
+    <meta name="description"
+        content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
     dedicated to creating innovative solutions in the tech industry.
      With a focus on software development, startups, and technology-driven ventures, Kshithija is shaping the future of digital innovation.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Kshithija Tharaka | Software Engineer | Entrepreneur">
-    <meta property="og:description" 
-    content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
+    <meta property="og:description"
+        content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
     dedicated to creating innovative solutions in the tech industry.
      With a focus on software development, startups, and technology-driven ventures, Kshithija is shaping the future of digital innovation.">
     <meta property="og:image" content="https://kshprimeindustries.com/img/preview.png">
@@ -472,8 +473,8 @@
             }
         }
 
-          /* HUD Overlay Elements */
-          .hud-corner {
+        /* HUD Overlay Elements */
+        .hud-corner {
             position: fixed;
             width: 100px;
             height: 100px;
@@ -881,10 +882,13 @@
         </div>
     </footer>
 
+   
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navUl = document.querySelector('nav ul');
+            const spans = document.querySelectorAll('.mobile-menu-btn span');
 
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', function () {
@@ -896,10 +900,12 @@
                         spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
                         spans[1].style.opacity = '0';
                         spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+                        if (navUl) navUl.style.display = 'flex';
                     } else {
                         spans[0].style.transform = 'none';
                         spans[1].style.opacity = '1';
                         spans[2].style.transform = 'none';
+                        if (navUl) navUl.style.display = '';
                     }
                 });
             }
@@ -910,13 +916,10 @@
                     !event.target.closest('nav') &&
                     !event.target.closest('.mobile-menu-btn')) {
                     document.body.classList.remove('mobile-menu-active');
-
-                    // Reset button animation
-                    const spans = document.querySelectorAll('.mobile-menu-btn span');
-                    spans.forEach(span => {
-                        span.style.transform = 'none';
-                        span.style.opacity = '1';
-                    });
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                    if (navUl) navUl.style.display = '';
                 }
             });
 
@@ -926,15 +929,23 @@
                 link.addEventListener('click', function () {
                     if (document.body.classList.contains('mobile-menu-active')) {
                         document.body.classList.remove('mobile-menu-active');
-
-                        // Reset button animation
-                        const spans = document.querySelectorAll('.mobile-menu-btn span');
-                        spans.forEach(span => {
-                            span.style.transform = 'none';
-                            span.style.opacity = '1';
-                        });
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                        if (navUl) navUl.style.display = '';
                     }
                 });
+            });
+
+            // --- NEW FEATURE: Auto-hide mobile menu on desktop resize ---
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768 && document.body.classList.contains('mobile-menu-active')) {
+                    document.body.classList.remove('mobile-menu-active');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                    if (navUl) navUl.style.display = '';
+                }
             });
 
             // Function to check if element is in viewport
@@ -1021,7 +1032,6 @@
             // Start the animations
             startAnimations();
         })();
-
     </script>
 
     <script>

@@ -1,3 +1,68 @@
+# General Rules for all crawlers
 User-agent: *
-Allow: /Sitemap: https://kshprimeindustries.com/sitemap.xml
+# Allow essential resources (images, CSS, JavaScript, and the site web manifest)
+Allow: /icons/
+Allow: /img/
+Allow: /css/
 Allow: /site.webmanifest
+
+# Sitemap Location
+Sitemap: https://kshprimeindustries.com/sitemap.xml
+
+# Specific Crawl Rules for Googlebot
+User-agent: Googlebot
+# Allow Googlebot to access all content
+Allow: /
+
+# Crawl delay to prevent server overload (set to 5 seconds)
+Crawl-delay: 5
+
+# Block specific file types that don't help with SEO
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.doc$
+Disallow: /*.xls$
+
+# Block URL parameters that might create duplicate content
+Disallow: /*?*
+Disallow: /*?sort=
+Disallow: /*?filter=
+
+# Block unnecessary or private pages (if these exist)
+Disallow: /login/
+Disallow: /admin/
+
+# Allow core pages like services, about us, and contact
+Allow: /services/
+Allow: /about-us/
+Allow: /contact/
+
+# Allow for mobile-friendly pages (if separate mobile URLs exist)
+Allow: /mobile/
+
+# Block user data or private information (if any)
+Disallow: /user-data/
+
+# Allow essential CSS and JavaScript files for rendering
+Allow: /js/
+Allow: /css/
+
+# Allow Crawling of Pagination (if applicable)
+Allow: /page/
+
+# Disallow duplicate content with UTM parameters or tracking codes
+Disallow: /?utm_source=
+Disallow: /?ref=
+
+# Allow Googlebot-Image to crawl images for better indexing
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Block Git, system, and environment files (for security reasons)
+Disallow: /.git/
+Disallow: /.env
+
+# Allow Googlebot-Video to crawl video content (if applicable)
+User-agent: Googlebot-Video
+Allow: /videos/

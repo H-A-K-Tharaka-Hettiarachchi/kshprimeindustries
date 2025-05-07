@@ -1,3 +1,3 @@
 User-agent: *
-Allow: /
-Sitemap: https://kshprimeindustries.com/sitemap.xml
+Allow: /Sitemap: https://kshprimeindustries.com/sitemap.xml
+Allow: /site.webmanifest

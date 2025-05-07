@@ -7,14 +7,15 @@
     <title>Kshithija Tharaka | Software Engineer | Entrepreneur</title>
 
     <meta name="author" content="KSHPRIME INDUSTRIES">
-    <meta name="description" content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
+    <meta name="description"
+        content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
     dedicated to creating innovative solutions in the tech industry.
      With a focus on software development, startups, and technology-driven ventures, Kshithija is shaping the future of digital innovation.">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Kshithija Tharaka | Software Engineer | Entrepreneur">
-    <meta property="og:description" 
-    content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
+    <meta property="og:description"
+        content="Kshithija Tharaka is a passionate software engineer and entrepreneur, 
     dedicated to creating innovative solutions in the tech industry.
      With a focus on software development, startups, and technology-driven ventures, Kshithija is shaping the future of digital innovation.">
     <meta property="og:image" content="https://kshprimeindustries.com/img/preview.png">
@@ -795,8 +796,8 @@
             }
         }
 
-          /* Data Processing Animation - Fixed */
-          .data-processing {
+        /* Data Processing Animation - Fixed */
+        .data-processing {
             position: fixed;
             right: 30px;
             bottom: 30px;
@@ -902,14 +903,17 @@
                 transform: rotate(360deg);
             }
         }
+
         @media (max-width: 768px) {
             .data-processing {
                 display: none;
             }
-            .hud-corner{
+
+            .hud-corner {
                 display: none;
             }
-            .loading-indicator{
+
+            .loading-indicator {
                 display: none;
             }
         }
@@ -981,12 +985,18 @@
                     <div class="terminal-window">
                         <div class="terminal-content">
                             <div class="command-line">$ <span class="command">cat profile_summary.txt</span></div>
-                            <p>Software engineer specializing in full-stack development with expertise in mobile and web
-                                applications. Focused on creating secure, scalable, and intuitive technology solutions
-                                across multiple platforms.</p>
-                            <p>Experienced in developing mission-critical applications for various industries, with
-                                emphasis on user experience and system security. Constantly exploring emerging
-                                technologies to push the boundaries of what's possible.</p>
+                            <p>Kshithija Tharaka is an entrepreneur and CEO of KSHPRIME INDUSTRIES.
+                                He aims to change the future with technology.
+                                As a full-stack developer and innovator,
+                                Kshithija enjoys solving tough problems and creating new solutions that push boundaries.
+                            </p>
+                            <br>
+                            <p>Kshithija is driven by big ideas and goals.
+                                He works on new technologies that not only improve industries but also make a positive
+                                impact on the world.
+                                His work is motivated by curiosity, constant innovation,
+                                and a desire to create world-changing ideas that will make a difference in the world.
+                            </p>
                             <div class="profile-stats">
                                 <div class="stat-item animate delay-1">
                                     <div class="stat-label">EXPERIENCE</div>
@@ -1393,7 +1403,7 @@
     <div class="hud-corner hud-top-right"></div>
     <div class="hud-corner hud-bottom-left"></div>
     <div class="hud-corner hud-bottom-right"></div>
-    
+
     </div>
     <div class="circuit-overlay"></div>
     <div class="tech-grid"></div>
@@ -1582,14 +1592,14 @@
                 });
             });
         });
-         // Data Processing Animation Fix
-         (function createTypingAnimation() {
+        // Data Processing Animation Fix
+        (function createTypingAnimation() {
             const dataProcessing = document.querySelector('.data-processing');
             if (!dataProcessing) return;
-            
+
             // Get all data lines
             const dataLines = document.querySelectorAll('.data-line');
-            
+
             // Remove existing animation
             dataLines.forEach(line => {
                 line.style.animation = 'none';
@@ -1600,7 +1610,7 @@
                 line.dataset.originalText = line.textContent;
                 line.textContent = '';
             });
-            
+
             // Create animated typing effect with continuous loop
             function startAnimations() {
                 dataLines.forEach((line, index) => {
@@ -1610,18 +1620,18 @@
                     }, index * 800);
                 });
             }
-            
+
             function animateLine(line, text, index) {
                 let charIndex = 0;
                 line.textContent = '';
-                
+
                 const typeInterval = setInterval(() => {
                     if (charIndex < text.length) {
                         line.textContent += text.charAt(charIndex);
                         charIndex++;
                     } else {
                         clearInterval(typeInterval);
-                        
+
                         // After full text is shown, wait and reset for loop
                         setTimeout(() => {
                             // Clear and restart this line
@@ -1631,7 +1641,7 @@
                     }
                 }, 50 + Math.random() * 30); // Slightly random typing speed
             }
-            
+
             // Start the animations
             startAnimations();
         })();

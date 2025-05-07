@@ -1416,25 +1416,29 @@
     </div>
 
     <!-- Script for animations and mobile menu -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Mobile menu toggle
+            // --- MOBILE MENU LOGIC ---
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navUl = document.querySelector('nav ul');
+            const spans = document.querySelectorAll('.mobile-menu-btn span');
 
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function () {
+            // Toggle menu
+            if (mobileMenuBtn && navUl) {
+                mobileMenuBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
                     document.body.classList.toggle('mobile-menu-active');
-
-                    // Animation for the menu button
-                    const spans = this.querySelectorAll('span');
                     if (document.body.classList.contains('mobile-menu-active')) {
                         spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
                         spans[1].style.opacity = '0';
                         spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+                        navUl.style.display = 'flex';
                     } else {
                         spans[0].style.transform = 'none';
                         spans[1].style.opacity = '1';
                         spans[2].style.transform = 'none';
+                        navUl.style.display = '';
                     }
                 });
             }
@@ -1445,34 +1449,40 @@
                     !event.target.closest('nav') &&
                     !event.target.closest('.mobile-menu-btn')) {
                     document.body.classList.remove('mobile-menu-active');
-
-                    // Reset button animation
-                    const spans = document.querySelectorAll('.mobile-menu-btn span');
-                    spans.forEach(span => {
-                        span.style.transform = 'none';
-                        span.style.opacity = '1';
-                    });
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                    navUl.style.display = '';
                 }
             });
 
-            // Close menu when clicking on a menu item
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    if (document.body.classList.contains('mobile-menu-active')) {
-                        document.body.classList.remove('mobile-menu-active');
-
-                        // Reset button animation
-                        const spans = document.querySelectorAll('.mobile-menu-btn span');
-                        spans.forEach(span => {
-                            span.style.transform = 'none';
-                            span.style.opacity = '1';
-                        });
-                    }
+            // Close menu when clicking a link
+            if (navUl) {
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function () {
+                        if (document.body.classList.contains('mobile-menu-active')) {
+                            document.body.classList.remove('mobile-menu-active');
+                            spans[0].style.transform = 'none';
+                            spans[1].style.opacity = '1';
+                            spans[2].style.transform = 'none';
+                            navUl.style.display = '';
+                        }
+                    });
                 });
+            }
+
+            // --- NEW FEATURE: Auto-hide mobile menu on desktop resize ---
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768 && document.body.classList.contains('mobile-menu-active')) {
+                    document.body.classList.remove('mobile-menu-active');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                    navUl.style.display = '';
+                }
             });
 
-            // Function to handle scroll animations
+            // --- SCROLL/ANIMATION LOGIC ---
             function animateOnScroll() {
                 const elements = document.querySelectorAll('.animate, .animate-left, .animate-right, .animate-zoom, .project-card, .tech-item, .contact-item, .social-links, .contact-form');
 
@@ -1501,7 +1511,6 @@
                         const width = bar.getAttribute('data-width');
                         bar.style.width = width;
                         bar.classList.add('animated');
-
                         // Set the data-percent attribute for the hover tooltip
                         bar.setAttribute('data-percent', width);
                     } else {
@@ -1532,119 +1541,62 @@
 
             // Re-trigger animations when resizing window
             window.addEventListener('resize', animateOnScroll);
-        });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            // --- DATA PROCESSING TYPING EFFECT ---
+            (function createTypingAnimation() {
+                const dataProcessing = document.querySelector('.data-processing');
+                if (!dataProcessing) return;
 
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function () {
-                    document.body.classList.toggle('mobile-menu-active');
+                // Get all data lines
+                const dataLines = document.querySelectorAll('.data-line');
 
-                    // Animation for the menu button
-                    const spans = this.querySelectorAll('span');
-                    if (document.body.classList.contains('mobile-menu-active')) {
-                        spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
-                        spans[1].style.opacity = '0';
-                        spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-                    } else {
-                        spans[0].style.transform = 'none';
-                        spans[1].style.opacity = '1';
-                        spans[2].style.transform = 'none';
-                    }
+                // Remove existing animation
+                dataLines.forEach(line => {
+                    line.style.animation = 'none';
+                    line.style.width = 'auto';
+                    line.style.overflow = 'hidden';
+                    line.style.whiteSpace = 'nowrap';
+                    line.style.marginBottom = '5px';
+                    line.dataset.originalText = line.textContent;
+                    line.textContent = '';
                 });
-            }
 
-            // Close menu when clicking outside
-            document.addEventListener('click', function (event) {
-                if (document.body.classList.contains('mobile-menu-active') &&
-                    !event.target.closest('nav') &&
-                    !event.target.closest('.mobile-menu-btn')) {
-                    document.body.classList.remove('mobile-menu-active');
-
-                    // Reset button animation
-                    const spans = document.querySelectorAll('.mobile-menu-btn span');
-                    spans.forEach(span => {
-                        span.style.transform = 'none';
-                        span.style.opacity = '1';
+                // Create animated typing effect with continuous loop
+                function startAnimations() {
+                    dataLines.forEach((line, index) => {
+                        const originalText = line.dataset.originalText;
+                        setTimeout(() => {
+                            animateLine(line, originalText, index);
+                        }, index * 800);
                     });
                 }
-            });
 
-            // Close menu when clicking on a menu item
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    if (document.body.classList.contains('mobile-menu-active')) {
-                        document.body.classList.remove('mobile-menu-active');
+                function animateLine(line, text, index) {
+                    let charIndex = 0;
+                    line.textContent = '';
 
-                        // Reset button animation
-                        const spans = document.querySelectorAll('.mobile-menu-btn span');
-                        spans.forEach(span => {
-                            span.style.transform = 'none';
-                            span.style.opacity = '1';
-                        });
-                    }
-                });
-            });
+                    const typeInterval = setInterval(() => {
+                        if (charIndex < text.length) {
+                            line.textContent += text.charAt(charIndex);
+                            charIndex++;
+                        } else {
+                            clearInterval(typeInterval);
+
+                            // After full text is shown, wait and reset for loop
+                            setTimeout(() => {
+                                // Clear and restart this line
+                                line.textContent = '';
+                                animateLine(line, text, index);
+                            }, 3000 + (index * 500)); // Different delay for each line to avoid simultaneous resets
+                        }
+                    }, 50 + Math.random() * 30); // Slightly random typing speed
+                }
+
+                // Start the animations
+                startAnimations();
+            })();
         });
-        // Data Processing Animation Fix
-        (function createTypingAnimation() {
-            const dataProcessing = document.querySelector('.data-processing');
-            if (!dataProcessing) return;
-
-            // Get all data lines
-            const dataLines = document.querySelectorAll('.data-line');
-
-            // Remove existing animation
-            dataLines.forEach(line => {
-                line.style.animation = 'none';
-                line.style.width = 'auto';
-                line.style.overflow = 'hidden';
-                line.style.whiteSpace = 'nowrap';
-                line.style.marginBottom = '5px';
-                line.dataset.originalText = line.textContent;
-                line.textContent = '';
-            });
-
-            // Create animated typing effect with continuous loop
-            function startAnimations() {
-                dataLines.forEach((line, index) => {
-                    const originalText = line.dataset.originalText;
-                    setTimeout(() => {
-                        animateLine(line, originalText, index);
-                    }, index * 800);
-                });
-            }
-
-            function animateLine(line, text, index) {
-                let charIndex = 0;
-                line.textContent = '';
-
-                const typeInterval = setInterval(() => {
-                    if (charIndex < text.length) {
-                        line.textContent += text.charAt(charIndex);
-                        charIndex++;
-                    } else {
-                        clearInterval(typeInterval);
-
-                        // After full text is shown, wait and reset for loop
-                        setTimeout(() => {
-                            // Clear and restart this line
-                            line.textContent = '';
-                            animateLine(line, text, index);
-                        }, 3000 + (index * 500)); // Different delay for each line to avoid simultaneous resets
-                    }
-                }, 50 + Math.random() * 30); // Slightly random typing speed
-            }
-
-            // Start the animations
-            startAnimations();
-        })();
-
     </script>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
